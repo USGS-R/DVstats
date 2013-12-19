@@ -1,0 +1,81 @@
+\name{freqAnal}
+\alias{freqAnal}
+\title{Frequency Analysis}
+\usage{
+  freqAnal(x, id, desc = "", STAID = "Unknown",
+    method = "Auto")
+}
+\arguments{
+  \item{x}{the observed data. Missing values are removed
+  before computing the descriptive statistics. See
+  \bold{Details}.}
+
+  \item{id}{an optional identifier for each value in
+  \code{x}. If supplied, must match length of \code{x}.}
+
+  \item{desc}{a description of the statistic.}
+
+  \item{STAID}{the station identifier}
+
+  \item{method}{a character string indicating the method to
+  use for computing the final estimates. See
+  \bold{Details}.}
+}
+\value{
+  An object of class "freqAnal" that can be used to compute
+  specific estimates.
+}
+\description{
+  Compute an extreme-value frequency analysis. Three
+  distributions are fit: log-Pearson type III, 3-parameter
+  log-normal, and the log-generalized extreme value. The
+  analyses are used primarily for streamflow data.
+}
+\details{
+  Zero values are removed from \code{x} and the statistics
+  are computed on the conditional adjustment for the zero
+  values. If there are fewer than six non-zero values or
+  all non-zero values are co-equal, then no distributions
+  are fit and the empirical distribution is used. Any value
+  in \code{x} less than zero generates an error.
+
+  The choice for \code{method} must be one of "Auto,"
+  "lp3," "ln3," "lgev," or "PPCC" only the first two
+  characters are required. The methods "lp3," "ln3," and
+  "lgev" select the specific frequency analysis for the
+  method to use. The method "PPCC" selects the maximum PPCC
+  to determine the method. The default method, "Auto,"
+  Preferentially selects the log-Pearson type III method if
+  the PPCC of that method is greater than 0.985 and if that
+  fails, selects the 3-parametter log-normal if the PPCC of
+  that method is greater than 0.985 and if that fails then
+  the maximum PPCC is used to select the method.
+}
+\note{
+  The 3-parameter lognormal and log-generalized extreme
+  value will occasionally fail to fit the observed data and
+  no estimate can be made. If either of these are selected
+  by the user, then the selected method will default to the
+  log-Pearson type III method.
+
+  The log-Pearson type III method will occasionally fail to
+  fit the observed data, but an estimate can be made. No
+  warning is created, but the printed report indicates that
+  observed values exceed the range of the distribution.
+
+  The 3-parameter lognormal can estimate values less than
+  zero if \code{lambda} is less than zero. No warning is
+  created, but the printed report will include a note if
+  estimated values correponding to observed values are less
+  than 0. Any predicted values less than zero are converted
+  to zero.
+}
+\examples{
+\dontrun{
+library(USGSwsData)
+data(ConecuhFlows)
+with(ConecuhFlows, freqAnal(Flow, Year, desc="Annual Flows",
+ STAID="02371500"))
+}
+}
+

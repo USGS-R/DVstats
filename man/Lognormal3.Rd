@@ -1,0 +1,51 @@
+\name{dln3}
+\alias{dln3}
+\alias{dln3,}
+\alias{Lognormal3,}
+\alias{pln3}
+\alias{pln3,}
+\alias{qln3}
+\alias{qln3,}
+\alias{rln3}
+\title{The 3-Parameter Log Normal Distribution}
+\usage{
+  dln3(x, meanlog = 0, sdlog = 1, lambda = 0)
+
+  pln3(q, meanlog = 0, sdlog = 1, lambda = 0)
+
+  qln3(p, meanlog = 0, sdlog = 1, lambda = 0, log = FALSE)
+
+  rln3(n, meanlog = 0, sdlog = 1, lambda = 0)
+}
+\arguments{
+  \item{x}{vector of quantiles.}
+
+  \item{q}{vector of quantiles.}
+
+  \item{p}{vector of probabilities.}
+
+  \item{n}{number of observations.}
+
+  \item{meanlog}{the mean of the logarithm of the data
+  minus \code{lamda}.}
+
+  \item{sdlog}{the stadndard deviation of the logarithm of
+  the data minus \code{lamda}.}
+
+  \item{lambda}{the offset.}
+
+  \item{log}{transform the quantiles by their natural
+  logarithm?}
+}
+\value{
+  The density, cumulative probability, quantile,or random
+  deviate.
+}
+\description{
+  Density, distribution function, quantile function and
+  random generation for the 3-parameter log normal
+  distribution whose logarithm of the data minus lambda has
+  mean equal to meanlog and standard deviation equal to
+  sdlog.
+}
+

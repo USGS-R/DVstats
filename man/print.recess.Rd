@@ -1,0 +1,28 @@
+\name{print.recess}
+\alias{print.recess}
+\title{Print an Object}
+\usage{
+  \method{print}{recess} (x, digits = 4, ...)
+}
+\arguments{
+  \item{x}{the object to be printed.}
+
+  \item{digits}{the number of digits to use when printing
+  numeric values.}
+
+  \item{\dots}{not used, required for other methods.}
+}
+\value{
+  The object \code{x} is returned invisibly
+}
+\description{
+  Print surface-water recession summary information
+}
+\section{Side Effect}{
+  The object \code{x} is printed
+}
+\seealso{
+  \code{\link{recess}}
+}
+\keyword{print}
+

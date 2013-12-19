@@ -1,0 +1,21 @@
+\name{join}
+\alias{join}
+\title{Recess Merging}
+\usage{
+  join(x, y)
+}
+\arguments{
+  \item{x}{the recession analysis to be appended.}
+
+  \item{y}{the recession analysis to append. The recession
+  period in \code{y} is assumed to be after the period in
+  \code{x}.}
+}
+\value{
+  An object of class "recess" consisting of the recession
+  in \code{x} and \code{value}.
+}
+\description{
+  Append two recession analyses.
+}
+

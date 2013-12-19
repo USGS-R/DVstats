@@ -1,0 +1,48 @@
+\name{setSeasons}
+\alias{setSeasons}
+\title{Define Seasons}
+\usage{
+  setSeasons(...)
+}
+\arguments{
+  \item{\dots}{named arguments of months that define a
+  season. See \bold{Details}.}
+}
+\value{
+  A list containing the name of the season with the first
+  and last month.
+}
+\description{
+  Create a list that defines how seasons are defined for a
+  particular application.
+}
+\details{
+  At a minimum, the end month of the season must be given.
+  If only the end month is given, then the seasons must be
+  in sequential month order. For clarity, the beginning and
+  end months, or all months, in order, for the season can
+  be given. The season is allowed to overlap the calendar
+  year.\cr Month abbreviations may be used instead of the
+  full month name. See the documentation for
+  \code{month.abb}.
+}
+\note{
+  The season year is defined as the period from the first
+  day of the starting month to the last day of the ending
+  month. The season year is designated by the calendar year
+  in which it ends. Thus, the season year starting December
+  1, 1998 and ending March 30, 1999, is the "1999
+  December-March season year."
+}
+\examples{
+# Define seasons that might possibly be used in the northern U.S.
+setSeasons(Winter="March", Spring="May", Summer="September", Fall="November")
+# The same using begin and end months and abbreviations
+setSeasons(Winter=c("Dec", "Mar"), Spring=c("Apr", "May"),
+Summer=c("Jun", "Sep"), Fall=c("Oct", "Nov"))
+}
+\seealso{
+  \code{\link{seasonYear}}, \code{\link{month.abb}}
+}
+\keyword{manip}
+

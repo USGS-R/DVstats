@@ -1,0 +1,26 @@
+\name{print.rise}
+\alias{print.rise}
+\title{Print an Object}
+\usage{
+  \method{print}{rise} (x, ...)
+}
+\arguments{
+  \item{x}{an object of class "rise."}
+
+  \item{\dots}{not used, required for other methods.}
+}
+\value{
+  The object \code{x} is returned invisibly
+}
+\description{
+  Print an object of class "rise" from a groundwater rise
+  analysis.
+}
+\section{Side Effect}{
+  The object \code{x} is printed
+}
+\seealso{
+  \code{\link{rise}}
+}
+\keyword{print}
+

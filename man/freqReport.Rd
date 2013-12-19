@@ -1,0 +1,22 @@
+\name{freqReport}
+\alias{freqReport}
+\title{Create Frequency Analysis Report}
+\usage{
+  freqReport(x, file)
+}
+\arguments{
+  \item{x}{and object of class "freqAnal."}
+
+  \item{file}{the output file base name; the .pdf suffix is
+  appended to make the actual file name. if missing, then
+  the name of \code{x} is used as the base name.}
+}
+\value{
+  The actual file name is returned invisibly.
+}
+\description{
+  Create a 2-page pdf file report of a frequency analsysi.
+  The report contains the text output and 3 diagnostic
+  plots.
+}
+

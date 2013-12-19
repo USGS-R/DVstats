@@ -1,0 +1,26 @@
+\name{print.freqAnal}
+\alias{print.freqAnal}
+\title{Print an Object}
+\usage{
+  \method{print}{freqAnal} (x, digits = 4,
+    common.logs = TRUE, ...)
+}
+\arguments{
+  \item{x}{an object of class "freqAnal."}
+
+  \item{digits}{the number of digits to print for numeric
+  values.}
+
+  \item{common.logs}{report the log statistics in terms of
+  common logs?}
+
+  \item{\dots}{further arguments passed to or from other
+  methods.}
+}
+\value{
+  The object \code{x} is returned invisibly.
+}
+\description{
+  Prints the results of a frequency analysis.
+}
+

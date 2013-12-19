@@ -1,0 +1,50 @@
+\name{plot.recess}
+\alias{plot.recess}
+\title{Plot an Object}
+\usage{
+  \method{plot}{recess} (x, which = "All", set.up = TRUE,
+    before = 0, after = before, ...)
+}
+\arguments{
+  \item{x}{an object of class "recess."}
+
+  \item{which}{either "All" for all recessions, a any
+  number of sequence numbers (not Index number) of the
+  recessions to plot, "season" for a graph of recession
+  rates over the calendar year, or "flow" for a graph of
+  recession rates by flow.}
+
+  \item{set.up}{set up the graphics page? Set to
+  \code{FALSE} if the graphics page has been set up with a
+  call to \code{setPage}.}
+
+  \item{before}{begin plot \code{before} days prior to
+  recession.}
+
+  \item{after}{end plot \code{after} days after the end of
+  the recession. See \bold{Details}.}
+
+  \item{\dots}{not used, required for other methods.}
+}
+\value{
+  The object \code{x} is returned invisibly
+}
+\description{
+  Plot an object of class "rise" from a groundwater rise
+  analysis.
+}
+\details{
+  The \code{before} and \code{after} arguments prepend and
+  append those number of days to the plot of the recession,
+  which can be useful for assessing the recession. If
+  \code{after} is set to a positive value, then
+  \code{before} is forced to a value greater than 0.
+}
+\section{Side Effect}{
+  The object \code{x} is plotted
+}
+\seealso{
+  \code{\link{rise}}
+}
+\keyword{hplot}
+

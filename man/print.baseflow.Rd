@@ -1,0 +1,30 @@
+\name{print.baseflow}
+\alias{print.baseflow}
+\title{Print an Object}
+\usage{
+  \method{print}{baseflow} (x, digits = 4, ...)
+}
+\arguments{
+  \item{x}{an object of class "baseflow."}
+
+  \item{digits}{the number of digits to use for printing
+  numbers.}
+
+  \item{\dots}{not used, required for other methods.}
+}
+\value{
+  The object \code{x} is returned invisibly
+}
+\description{
+  Print an object of class "baseflow" from any baseflow
+  analysis.
+}
+\section{Side Effect}{
+  The object \code{x} is printed
+}
+\seealso{
+  \code{\link{part}}, \code{\link{hysep}},
+  \code{\link{bfi}}
+}
+\keyword{print}
+
