@@ -2,7 +2,7 @@
 \alias{freqReport}
 \title{Create Frequency Analysis Report}
 \usage{
-  freqReport(x, file)
+freqReport(x, file)
 }
 \arguments{
   \item{x}{and object of class "freqAnal."}
@@ -12,11 +12,13 @@
   the name of \code{x} is used as the base name.}
 }
 \value{
-  The actual file name is returned invisibly.
+The actual file name is returned invisibly.
 }
 \description{
-  Create a 2-page pdf file report of a frequency analsysi.
-  The report contains the text output and 3 diagnostic
-  plots.
+Create a 2-page pdf file report of a frequency analysis.
+The report contains the text output from \code{print(x)},
+the esitmated values of selected probailities of
+exceedance, and a diagnostic plot for each fitted
+distribution.
 }
 

@@ -2,8 +2,7 @@
 \alias{aggregate.baseflow}
 \title{Baseflow Summary}
 \usage{
-  \method{aggregate}{baseflow} (x, by = "months",
-    index = FALSE, ...)
+\method{aggregate}{baseflow}(x, by = "months", index = FALSE, ...)
 }
 \arguments{
   \item{x}{an object of class "baseflow."}
@@ -17,20 +16,20 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The baseflow for each period specified in \code{by}. The
-  units are the same as for \code{x}.
+The baseflow for each period specified in \code{by}. The
+units are the same as for \code{x}.
 }
 \description{
-  Computes baseflow statistics for user-specified periods
-  of time.
+Computes baseflow statistics for user-specified periods of
+time.
 }
 \details{
-  The aregument \code{by} can be either a character
-  indicating the period, or a list created by
-  \code{setSeasons}. If a character , then must be
-  "months," "years," "calendar years," "water years,"
-  "climate years," or "total." May be abbreviated; and
-  "years" is the same as "calendar years."
+The aregument \code{by} can be either a character
+indicating the period, or a list created by
+\code{setSeasons}. If a character , then must be "months,"
+"years," "calendar years," "water years," "climate years,"
+or "total." May be abbreviated; and "years" is the same as
+"calendar years."
 }
 \examples{
 \dontrun{
@@ -43,8 +42,8 @@ aggregate(G12.hysep)
 }
 }
 \seealso{
-  \code{\link{part}}, \code{\link{hysep}},
-  \code{\link{bfi}}, \code{\link{setSeasons}}
+\code{\link{part}}, \code{\link{hysep}}, \code{\link{bfi}},
+\code{\link{setSeasons}}
 }
 \keyword{baseflow}
 

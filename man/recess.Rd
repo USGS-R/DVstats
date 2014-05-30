@@ -2,9 +2,9 @@
 \alias{recess}
 \title{Recessions}
 \usage{
-  recess(Flow, Dates, Start = NULL, End = NULL, by = NULL,
-    min.duration = 10, max.duration = 300,
-    check.srmse = 0.1, STAID = "Unknown")
+recess(Flow, Dates, Start = NULL, End = NULL, by = NULL,
+  min.duration = 10, max.duration = 300, check.srmse = 0.1,
+  STAID = "Unknown")
 }
 \arguments{
   \item{Flow}{the streamflow data to be analyzed. Missing
@@ -35,27 +35,26 @@
   \item{STAID}{the station identifier for the data.}
 }
 \value{
-  an object of class "recess" and inherits class
-  "data.frame" of the selected data, a data frame of the
-  recession information, and other information about the
-  analysis.
+an object of class "recess" and inherits class "data.frame"
+of the selected data, a data frame of the recession
+information, and other information about the analysis.
 }
 \description{
-  Identify surface-water recessions
+Identify surface-water recessions
 }
 \details{
-  Note that zero flows are set to a value so the the common
-  log is -2.5 in order to easily process recessions that go
-  to 0 flow.
+Note that zero flows are set to a value so the the common
+log is -2.5 in order to easily process recessions that go
+to 0 flow.
 
-  The scaled RMSE of the recession regression is the
-  root-mean-squared error divided by the square root of the
-  recession index. Large values of the scaled RMSE indicate
-  a lack of linearity, so \code{check.srmse} can be used as
-  a filter to remove poor fits, but at some risk of
-  rejecting acceptable recessions. The default value of
-  0.1, seems to be provide good balance of rejection for
-  poor fits and acceptance of good fits.
+The scaled RMSE of the recession regression is the
+root-mean-squared error divided by the square root of the
+recession index. Large values of the scaled RMSE indicate a
+lack of linearity, so \code{check.srmse} can be used as a
+filter to remove poor fits, but at some risk of rejecting
+acceptable recessions. The default value of 0.1, seems to
+be provide good balance of rejection for poor fits and
+acceptance of good fits.
 }
 \examples{
 \dontrun{

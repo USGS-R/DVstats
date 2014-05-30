@@ -2,8 +2,8 @@
 \alias{rise}
 \title{Rises}
 \usage{
-  rise(x, Dates, Start = NULL, End = NULL, MPelev = NULL,
-    STAID = "Unknown")
+rise(x, Dates, Start = NULL, End = NULL, MPelev = NULL,
+  STAID = "Unknown")
 }
 \arguments{
   \item{x}{the daily value data to be summarized. Missing
@@ -26,12 +26,12 @@
   \item{STAID}{the station identifier for the data.}
 }
 \value{
-  an object of class "rise" and inherits class "data.frame"
-  of the selected data, a data frame of the recession
-  information, and other information about the analysis.
+an object of class "rise" and inherits class "data.frame"
+of the selected data, a data frame of the recession
+information, and other information about the analysis.
 }
 \description{
-  Identify groundwater rises
+Identify groundwater rises
 }
 \examples{
 \dontrun{

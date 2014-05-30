@@ -2,8 +2,7 @@
 \alias{confirm.recess}
 \title{Confirm Streamflow Recessions}
 \usage{
-  \method{confirm}{recess} (x, all = FALSE, before = 1,
-    after = 5, ...)
+\method{confirm}{recess}(x, all = FALSE, before = 1, after = 5, ...)
 }
 \arguments{
   \item{x}{an object of class "recess."}
@@ -19,11 +18,11 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The object \code{x} is returned with updated recessions
+The object \code{x} is returned with updated recessions
 }
 \description{
-  This function processes the output of function
-  \code{recess} and requires the user to accept or reject
-  the recession.
+This function processes the output of function
+\code{recess} and requires the user to accept or reject the
+recession.
 }
 

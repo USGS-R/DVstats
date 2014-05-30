@@ -2,7 +2,7 @@
 \alias{extend}
 \title{Series Extention}
 \usage{
-  extend(x)
+extend(x)
 }
 \arguments{
   \item{x}{a numeric vector that represent a regular
@@ -10,24 +10,24 @@
   with non-missing values.}
 }
 \value{
-  A vector like \code{x} with missing value replaced.
+A vector like \code{x} with missing value replaced.
 }
 \description{
-  Extend a regular series with missing values at the
-  beginning or end by replacing the beginning missing
-  values with the first non-missing value and replacing the
-  ending missing values with the last non-missing value
+Extend a regular series with missing values at the
+beginning or end by replacing the beginning missing values
+with the first non-missing value and replacing the ending
+missing values with the last non-missing value
 }
 \note{
-  Interior missing values should be replaced first with a
-  function like \code{fillMissing}.
+Interior missing values should be replaced first with a
+function like \code{fillMissing}.
 }
 \examples{
 XT <- c(NA, NA, 1.2, 2.4, 3.5, NA)
 extend(XT)
 }
 \seealso{
-  \code{\link{fillMissing}}
+\code{\link{fillMissing}}
 }
 \keyword{manip}
 

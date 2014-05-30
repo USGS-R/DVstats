@@ -3,9 +3,13 @@
 #'This package has specialized functions for managing or
 #'manipulating daily hydrologic data.
 #'
-#'\tabular{ll}{ Package: \tab DVstats\cr Type: \tab Package\cr Version: \tab
-#'0.1\cr Date: \tab 2013-06-13\cr License: \tab File LICENSE\cr Depends: \tab
-#'lubridate, USGSwsBase, USGSwsGraphs, USGSwsStats, robust\cr } 
+#'\tabular{ll}{ Package: \tab DVstats\cr 
+#'Type: \tab Package\cr 
+#'Version: \tab 0.1\cr 
+#'Date: \tab 2013-06-13\cr 
+#'License: \tab File LICENSE\cr 
+#'Depends: \tab lubridate, USGSwsBase, USGSwsGraphs, 
+#' USGSwsStats, robust\cr } 
 #'This package contains functions that manage or manipipulate daily 
 #'hydrologic data.
 #'

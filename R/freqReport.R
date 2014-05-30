@@ -1,7 +1,9 @@
 #' Create Frequency Analysis Report
 #' 
-#' Create a 2-page pdf file report of a frequency analsysi. The 
-#'report contains the text output and 3 diagnostic plots.
+#' Create a 2-page pdf file report of a frequency analysis. The 
+#'report contains the text output from \code{print(x)}, the esitmated
+#'values of selected probailities of exceedance, and a diagnostic plot
+#'for each fitted distribution.
 #'
 #' @param x and object of class "freqAnal."
 #' @param file the output file base name; the .pdf suffix 
@@ -20,6 +22,9 @@ freqReport <- function(x, file) {
   ## Draw the text
   par(mar=c(0,0,0,0), usr=c(0,1,0,1))
   txt <- capture.output(x)
+  ## Append predicted values
+  txt <- c(txt, "\nEstimated values for selected probabilities of exceedance",
+           capture.output(predict(x)))
   text(0, 1, paste(txt, collapse="\n"), family="mono", adj=c(0,1))
   ## 3 diagnostic plots
   if(x$method != "emp") {

@@ -2,7 +2,7 @@
 \alias{print.recess}
 \title{Print an Object}
 \usage{
-  \method{print}{recess} (x, digits = 4, ...)
+\method{print}{recess}(x, digits = 4, ...)
 }
 \arguments{
   \item{x}{the object to be printed.}
@@ -13,16 +13,16 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The object \code{x} is returned invisibly
+The object \code{x} is returned invisibly
 }
 \description{
-  Print surface-water recession summary information
+Print surface-water recession summary information
 }
 \section{Side Effect}{
   The object \code{x} is printed
 }
 \seealso{
-  \code{\link{recess}}
+\code{\link{recess}}
 }
 \keyword{print}
 

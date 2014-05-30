@@ -2,8 +2,7 @@
 \alias{print.freqAnal}
 \title{Print an Object}
 \usage{
-  \method{print}{freqAnal} (x, digits = 4,
-    common.logs = TRUE, ...)
+\method{print}{freqAnal}(x, digits = 4, common.logs = TRUE, ...)
 }
 \arguments{
   \item{x}{an object of class "freqAnal."}
@@ -18,9 +17,9 @@
   methods.}
 }
 \value{
-  The object \code{x} is returned invisibly.
+The object \code{x} is returned invisibly.
 }
 \description{
-  Prints the results of a frequency analysis.
+Prints the results of a frequency analysis.
 }
 

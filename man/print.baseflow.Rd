@@ -2,7 +2,7 @@
 \alias{print.baseflow}
 \title{Print an Object}
 \usage{
-  \method{print}{baseflow} (x, digits = 4, ...)
+\method{print}{baseflow}(x, digits = 4, ...)
 }
 \arguments{
   \item{x}{an object of class "baseflow."}
@@ -13,18 +13,17 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The object \code{x} is returned invisibly
+The object \code{x} is returned invisibly
 }
 \description{
-  Print an object of class "baseflow" from any baseflow
-  analysis.
+Print an object of class "baseflow" from any baseflow
+analysis.
 }
 \section{Side Effect}{
   The object \code{x} is printed
 }
 \seealso{
-  \code{\link{part}}, \code{\link{hysep}},
-  \code{\link{bfi}}
+\code{\link{part}}, \code{\link{hysep}}, \code{\link{bfi}}
 }
 \keyword{print}
 

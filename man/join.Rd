@@ -2,7 +2,7 @@
 \alias{join}
 \title{Recess Merging}
 \usage{
-  join(x, y)
+join(x, y)
 }
 \arguments{
   \item{x}{the recession analysis to be appended.}
@@ -12,10 +12,10 @@
   \code{x}.}
 }
 \value{
-  An object of class "recess" consisting of the recession
-  in \code{x} and \code{value}.
+An object of class "recess" consisting of the recession in
+\code{x} and \code{value}.
 }
 \description{
-  Append two recession analyses.
+Append two recession analyses.
 }
 

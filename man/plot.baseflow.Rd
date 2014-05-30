@@ -2,8 +2,7 @@
 \alias{plot.baseflow}
 \title{Plot an Object}
 \usage{
-  \method{plot}{baseflow} (x, which = "All", set.up = TRUE,
-    ...)
+\method{plot}{baseflow}(x, which = "All", set.up = TRUE, ...)
 }
 \arguments{
   \item{x}{an object of class "baseflow."}
@@ -20,17 +19,17 @@
   other than \code{x} and \code{y}.}
 }
 \value{
-  The object \code{x} is returned invisibly
+The object \code{x} is returned invisibly
 }
 \description{
-  Plot an object of class "baseflow" from any baseflow
-  analysis.
+Plot an object of class "baseflow" from any baseflow
+analysis.
 }
 \section{Side Effect}{
   The object \code{x} is plotted
 }
 \seealso{
-  \code{\link{baseflow}}
+\code{\link{baseflow}}
 }
 \keyword{hplot}
 

@@ -2,7 +2,7 @@
 \alias{climateYear}
 \title{Climate Year}
 \usage{
-  climateYear(x, numeric = FALSE)
+climateYear(x, numeric = FALSE)
 }
 \arguments{
   \item{x}{an object of class "Date" or "POSIXt." Missing
@@ -15,18 +15,18 @@
   \code{FALSE}.}
 }
 \value{
-  An ordered factor or numeric vector corresponding to the
-  climate year.
+An ordered factor or numeric vector corresponding to the
+climate year.
 }
 \description{
-  Create an ordered factor or numeric values from a vector
-  of dates based on the climate year.
+Create an ordered factor or numeric values from a vector of
+dates based on the climate year.
 }
 \note{
-  The climate year is defined as the period from April 1 to
-  March 30. The climate year is designated by the calendar
-  year in which it ends. Thus, the year ending March 30,
-  1999, is the "1999 climate year."
+The climate year is defined as the period from April 1 to
+March 30. The climate year is designated by the calendar
+year in which it ends. Thus, the year ending March 30,
+1999, is the "1999 climate year."
 }
 \examples{
 library(USGSwsData)
@@ -35,7 +35,7 @@ data(QW05078470)
 climateYear(QW05078470$DATES)
 }
 \seealso{
-  \code{\link{year}}, \code{\link{waterYear}}
+\code{\link{year}}, \code{\link{waterYear}}
 }
 \keyword{manip}
 

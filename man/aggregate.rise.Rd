@@ -2,8 +2,7 @@
 \alias{aggregate.rise}
 \title{Compute Recharge}
 \usage{
-  \method{aggregate}{rise} (x, by = "months", SY = 0.25,
-    ...)
+\method{aggregate}{rise}(x, by = "months", SY = 0.25, ...)
 }
 \arguments{
   \item{x}{an object of class "rise."}
@@ -17,20 +16,19 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The recharge for each period specified in \code{by}. The
-  units are the same as for \code{x}.
+The recharge for each period specified in \code{by}. The
+units are the same as for \code{x}.
 }
 \description{
-  Computes recharge from an object of class "rise" from a
-  groundwater rise analysis.
+Computes recharge from an object of class "rise" from a
+groundwater rise analysis.
 }
 \details{
-  The argument \code{by} can be either a character
-  indicating the period, or a list created by
-  \code{setSeasons}. If a character , thne must be
-  "months," "years," "calendar years," "water years," or
-  "climate years." May be abbreviated; and "years" is the
-  same as "calendar years."
+The argument \code{by} can be either a character indicating
+the period, or a list created by \code{setSeasons}. If a
+character , thne must be "months," "years," "calendar
+years," "water years," or "climate years." May be
+abbreviated; and "years" is the same as "calendar years."
 }
 \examples{
 \dontrun{
@@ -42,7 +40,7 @@ aggregate(G12.rise)
 }
 }
 \seealso{
-  \code{\link{rise}}, \code{\link{setSeasons}}
+\code{\link{rise}}, \code{\link{setSeasons}}
 }
 \keyword{recharge}
 

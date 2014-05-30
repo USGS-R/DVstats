@@ -5,13 +5,13 @@
 #'logarithm of the data minus lambda has mean equal to meanlog 
 #'and standard deviation equal to sdlog.
 #'
-#' @aliases Lognormal3, dln3, pln3, qln3, rln3
+#' @aliases Lognormal3 dln3 pln3 qln3 rln3
 #' @param x vector of quantiles.
 #' @param q vector of quantiles.
 #' @param p vector of probabilities.
 #' @param n number of observations.
 #' @param meanlog the mean of the logarithm of the data minus \code{lamda}.
-#' @param sdlog the stadndard deviation of the logarithm of 
+#' @param sdlog the standard deviation of the logarithm of 
 #'the data minus \code{lamda}.
 #' @param lambda the offset.
 #' @param log transform the quantiles by their natural logarithm?

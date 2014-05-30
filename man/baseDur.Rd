@@ -1,0 +1,51 @@
+\name{baseDur}
+\alias{baseDur}
+\title{Daily Value Durations}
+\usage{
+baseDur(x, Dates, Start = NULL, End = NULL, base = quantile(x, probs =
+  0.1, na.rm = TRUE), test = "<=", STAID = "")
+}
+\arguments{
+  \item{x}{the daily value data to be summarized. Missing
+  values are permitted, but are treated as gaps---durations
+  are reset.}
+
+  \item{Dates}{the date for each \code{x}, should be of
+  class "Date." Missing values are not permitted.}
+
+  \item{Start}{the start date for the analysis, can be
+  either a character string or class "Date."}
+
+  \item{End}{the end date for the analysis, can be either a
+  character string or class "Date."}
+
+  \item{base}{the base or threshold value for the test.}
+
+  \item{test}{a character string indicating the comparison
+  between \code{x} and \code{base}. Should be one of "<=,"
+  "<," ">=," or ">."}
+
+  \item{STAID}{the station identifier for the data.}
+}
+\value{
+A data.frame containing the \code{STAID}, the date on which
+the duration started, the length of the duration period,
+and the minimum or maximum, depending on the test, during
+the period of the duration.
+}
+\description{
+Compute durations .
+}
+\examples{
+\dontrun{
+# Get daily flow values for 05078470 for 2003
+library(USGSwsData)
+data(Q05078470)
+# When are 0 flows?
+with(Q05078470, baseDur(FLOW, DATES, base=0, STAID="05078470"))
+# Peak flows?
+with(Q05078470, baseDur(FLOW, DATES, base=3, test=">=",
+STAID="05078470"))
+}
+}
+

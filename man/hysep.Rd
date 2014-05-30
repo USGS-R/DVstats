@@ -2,8 +2,8 @@
 \alias{hysep}
 \title{Baseflow Separation}
 \usage{
-  hysep(Flow, Dates, Start = NULL, End = NULL, da,
-    select = "sliding", STAID = "Unknown")
+hysep(Flow, Dates, Start = NULL, End = NULL, da, select = "sliding",
+  STAID = "Unknown")
 }
 \arguments{
   \item{Flow}{the daily streamflow to be separated missing
@@ -30,14 +30,14 @@
   \item{STAID}{the station identifier for the data.}
 }
 \value{
-  an object of class "baseflow" and inherits class
-  "data.frame" of the selected data, a data frame of the
-  baseflow information, and other information about the
-  analysis.
+an object of class "baseflow" and inherits class
+"data.frame" of the selected data, a data frame of the
+baseflow information, and other information about the
+analysis.
 }
 \description{
-  Extract baseflow from a daily streamflow record using the
-  method described by Sloto and Crouse (1996).
+Extract baseflow from a daily streamflow record using the
+method described by Sloto and Crouse (1996).
 }
 \examples{
 \dontrun{
@@ -50,10 +50,10 @@ ChopPart
 }
 }
 \references{
-  Sloto, R.A. and Crouse, M.Y., 1996, HYSEP: A COMPUTER
-  PROGRAM FOR STREAMFLOW HYDROGRAPH SEPARATION AND
-  ANALYSIS: U.S. geological Survey Water-Resources
-  Investigations Report 96-4040. 46 p.
+Sloto, R.A. and Crouse, M.Y., 1996, HYSEP: A COMPUTER
+PROGRAM FOR STREAMFLOW HYDROGRAPH SEPARATION AND ANALYSIS:
+U.S. geological Survey Water-Resources Investigations
+Report 96-4040. 46 p.
 }
 \keyword{baseflow}
 

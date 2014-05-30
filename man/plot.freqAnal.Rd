@@ -2,8 +2,7 @@
 \alias{plot.freqAnal}
 \title{Plot an Object}
 \usage{
-  \method{plot}{freqAnal} (x, which = "Final",
-    set.up = TRUE, ...)
+\method{plot}{freqAnal}(x, which = "Final", set.up = TRUE, ...)
 }
 \arguments{
   \item{x}{an object of class "freqAnal."}
@@ -19,27 +18,27 @@
   \item{\dots}{not used, required for other methods.}
 }
 \value{
-  The object \code{x} is returned invisibly
+The object \code{x} is returned invisibly
 }
 \description{
-  Probability plot of an object of class "freqAnal"
-  frequency analysis.
+Probability plot of an object of class "freqAnal" frequency
+analysis.
 }
 \details{
-  If \code{which} is "Final," then the "traditional"
-  probability plot is created that shows the non-zero
-  values adjusted for any zero values and the fitted line.
-  Otherwise \code{which} must be one of "default," "emp,"
-  "lp3," "ln3," or "lgev." In that case, the nonzero data
-  are plotted on the corresponding probability scale
-  (uniform for "emp"). If \code{which} is "default," then
-  the selected prediction method is plotted.
+If \code{which} is "Final," then the "traditional"
+probability plot is created that shows the non-zero values
+adjusted for any zero values and the fitted line. Otherwise
+\code{which} must be one of "default," "emp," "lp3," "ln3,"
+or "lgev." In that case, the nonzero data are plotted on
+the corresponding probability scale (uniform for "emp"). If
+\code{which} is "default," then the selected prediction
+method is plotted.
 }
 \section{Side Effect}{
   The object \code{x} is plotted
 }
 \seealso{
-  \code{\link{freqAnal}}
+\code{\link{freqAnal}}
 }
 \keyword{hplot}
 

@@ -1,0 +1,2 @@
+BaseDur	Compute minimum base-flow duration and save to file. 
+FlowDurClass	Construct annual and monthly flow-duration class data and save to file.

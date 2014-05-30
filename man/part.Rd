@@ -2,8 +2,7 @@
 \alias{part}
 \title{Baseflow Separation}
 \usage{
-  part(Flow, Dates, Start = NULL, End = NULL, da,
-    STAID = "Unknown")
+part(Flow, Dates, Start = NULL, End = NULL, da, STAID = "Unknown")
 }
 \arguments{
   \item{Flow}{the daily streamflow to be separated missing
@@ -25,30 +24,29 @@
   \item{STAID}{the station identifier for the data.}
 }
 \value{
-  an object of class "baseflow" and inherits class
-  "data.frame" of the selected data, a data frame of the
-  baseflow information, and other information about the
-  analysis.
+an object of class "baseflow" and inherits class
+"data.frame" of the selected data, a data frame of the
+baseflow information, and other information about the
+analysis.
 }
 \description{
-  Extract baseflow from a daily streamflow record using the
-  method described by Rutledge (1998).
+Extract baseflow from a daily streamflow record using the
+method described by Rutledge (1998).
 }
 \note{
-  The estimates from this routine will occasionally differ
-  slightly from the original FORTRAN code from Rutledge
-  (1998). It is expected that those small differences are
-  due to rounding differences affecting comparison between
-  numbers that differ by very small amounts. There are also
-  differences in the initial baseflow estimates between
-  this version and the original version. Those differences
-  are due to slightly different initialization routines.
+The estimates from this routine will occasionally differ
+slightly from the original FORTRAN code from Rutledge
+(1998). It is expected that those small differences are due
+to rounding differences affecting comparison between
+numbers that differ by very small amounts. There are also
+differences in the initial baseflow estimates between this
+version and the original version. Those differences are due
+to slightly different initialization routines.
 
-  The estimate of baseflow from this routine is computed
-  from a linear interpolation of the \code{Part1} and
-  \code{Part2} estimates rather than the curvilinear
-  interpolation that was proposed without detials in
-  Rutledge (1998).
+The estimate of baseflow from this routine is computed from
+a linear interpolation of the \code{Part1} and \code{Part2}
+estimates rather than the curvilinear interpolation that
+was proposed without detials in Rutledge (1998).
 }
 \examples{
 \dontrun{
@@ -61,11 +59,11 @@ ChopPart
 }
 }
 \references{
-  Rutledge, A.T., 1998, Computer programs for describing
-  the recession of ground-water discharge and for
-  estimating mean ground-water recharge and discharge from
-  streamflow records---Update: U.S. geological Survey
-  Water-Resources Investigations Report 98-4148. 43 p.
+Rutledge, A.T., 1998, Computer programs for describing the
+recession of ground-water discharge and for estimating mean
+ground-water recharge and discharge from streamflow
+records---Update: U.S. geological Survey Water-Resources
+Investigations Report 98-4148. 43 p.
 }
 \keyword{baseflow}
 
