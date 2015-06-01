@@ -42,7 +42,7 @@
 #' @examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(ChoptankFlow)
 #'# Process by calendar year as that is the retrieval range
 #'ChopBFI <- with(ChoptankFlow, bfi(Flow, datetime, by="calendar year",

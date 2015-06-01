@@ -9,7 +9,7 @@
 #' @return The object \code{x} is returned invisibly.
 #' 
 #' @method print freqAnal
-#' @S3method print freqAnal
+#' @export
 print.freqAnal <- function(x, digits=4, common.logs=TRUE, ...) {
   ## Coding history:
   ##    2013Aug01 DLLorenz Initial coding.

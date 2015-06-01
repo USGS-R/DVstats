@@ -1,29 +1,28 @@
-#'Plot an Object
+#' Plot an Object
 #'
-#'Plot an object of class "rise" from a groundwater rise analysis.
+#' Plot an object of class "rise" from a groundwater rise analysis.
 #'
-#'The \code{before} and \code{after} arguments prepend and append those
+#' The \code{before} and \code{after} arguments prepend and append those
 #'number of days to the plot of the recession, which can be useful for 
 #'assessing the recession. If \code{after} is set to a positive value,
 #'then \code{before} is forced to a value greater than 0.
 #'
-#'@param x an object of class "recess."
-#'@param which either "All" for all recessions, a any number of sequence
+#' @param x an object of class "recess."
+#' @param which either "All" for all recessions, or any number of element
 #'numbers (not Index number) of the recessions to plot, "season" for a graph
 #'of recession rates over the calendar year, or "flow" for a graph of
 #'recession rates by flow.
-#'@param set.up set up the graphics page? Set to \code{FALSE} if the graphics page
+#' @param set.up set up the graphics page? Set to \code{FALSE} if the graphics page
 #'has been set up with a call to \code{setPage}.
-#'@param before begin plot \code{before} days prior to recession.
-#'@param after end plot \code{after} days after the end of the recession.
+#' @param before begin plot \code{before} days prior to recession.
+#' @param after end plot \code{after} days after the end of the recession.
 #'See \bold{Details}.
-#'@param \dots  not used, required for other methods.
-#'@return The object \code{x} is returned invisibly
-#'@section Side Effect: The object \code{x} is plotted
-#'@seealso \code{\link{rise}}
-#'@keywords hplot
-#'@method plot recess
-#'@S3method plot recess
+#' @param \dots  not used, required for other methods.
+#' @return The object \code{x} is returned invisibly
+#' @seealso \code{\link{rise}}
+#' @keywords hplot
+#' @export
+#' @method plot recess
 plot.recess <- function(x, which="All", set.up=TRUE, before=0, after=before, 
 												...) {
   ## Preprocessing:

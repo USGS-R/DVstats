@@ -20,12 +20,13 @@ This example illustrates retrieving daily values data from NWISweb and computing
 <<echo=TRUE>>=
 # Load the DVstats package and retrieve the data
 library(DVstats)
-# USGSwsBase is required by DVstats, so readNWIS,
-# renCol, and screenData functions are available.
-RRVM <- renCol(readNWIS("05484500", end.date="2012-09-30"))
+library(dataRetrieval)
+library(smwrBase) # needed for screenData and other functions
+library(smwrGraphs) # needed to create the graphs
+RRVM <- renameNWISColumns(readNWISdv("05484500", "00060", endDate="2012-09-30"))
 # The screenData function is useful to review for 
 # complete record, default is by calendar year.
-with(RRVM, screenData(datetime, Flow))
+with(RRVM, screenData(Date, Flow))
 # The record is complete, beginning 1915-04-25
 @
 
@@ -43,8 +44,8 @@ By default, the statistic (\texttt{stat}) in \texttt{min}, which will give the l
 <<echo=TRUE>>=
 # Compute the 7-day low flow for each climate year.
 RRVM7ClimY <- with(RRVM, 
-  dvStat(Flow, datetime,
-    by=climateYear(datetime),
+  dvStat(Flow, Date,
+    by=climateYear(Date),
     pre=movingAve,
     STAID="05484500",
     span=7, pos="trailing"))
@@ -116,8 +117,8 @@ To compute seasonal statistics, the \texttt{by} argument can be defined by the \
 <<echo=TRUE>>=
 # Compute the 7-day low flow for each climate year.
 RRVM7Summ <- with(RRVM, 
-  dvStat(Flow, datetime,
-    by=seasonYear(datetime),
+  dvStat(Flow, Date,
+    by=seasonYear(Date),
     pre=movingAve,
     STAID="05484500",
     span=7, pos="trailing"))

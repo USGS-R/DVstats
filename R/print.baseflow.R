@@ -11,7 +11,7 @@
 #' @seealso \code{\link{part}}, \code{\link{hysep}}, \code{\link{bfi}}
 #' @keywords print
 #' @method print baseflow
-#' @S3method print baseflow
+#' @export
 print.baseflow <- function(x, digits=4, ...) {
   BFI <- round(sum(x$BaseQ)/sum(x$Flow), digits)
   From <- format(x$Dates[1L])

@@ -17,13 +17,13 @@
 #' @keywords recharge
 #' @examples
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(GlacialRidge)
 #'G12.rise <- with(GlacialRidge, rise(G12, datetime, MPelev=1126.42, STAID="G12"))
 #'# monthly summary of recharge in feet
 #'aggregate(G12.rise)
 #'}
-#' @S3method aggregate rise
+#' @export
 #' @method aggregate rise
 aggregate.rise <- function(x, by="months", SY=.25, ...) {
   ## Coding history:

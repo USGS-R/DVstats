@@ -21,7 +21,7 @@
 #'
 #'\dontrun{
 #'# Get daily flow values for 05078470 for 2003
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(Q05078470)
 #'# When are 0 flows?
 #'with(Q05078470, baseDur(FLOW, DATES, base=0, STAID="05078470"))

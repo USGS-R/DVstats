@@ -1,20 +1,19 @@
-#'Plot an Object
+#' Plot an Object
 #'
-#'Plot an object of class "rise" from a groundwater rise analysis.
+#' Plot an object of class "rise" from a groundwater rise analysis.
 #'
 #'
-#'@param x an object of class "rise."
-#'@param which either "All" for the entire hydrogaph, "by year" for calendar year
+#' @param x an object of class "rise."
+#' @param which either "All" for the entire hydrogaph, "by year" for calendar year
 #'hydrographs, or the calendar year to plot.
-#'@param set.up set up the graphics page? Set to \code{FALSE} if the graphics page
+#' @param set.up set up the graphics page? Set to \code{FALSE} if the graphics page
 #'has been set up with a call to \code{setPage}. 
-#'@param \dots  not used, required for other methods.
-#'@return The object \code{x} is returned invisibly
-#'@section Side Effect: The object \code{x} is plotted
-#'@seealso \code{\link{rise}}
-#'@keywords hplot
-#'@method plot rise
-#'@S3method plot rise
+#' @param \dots  not used, required for other methods.
+#' @return The object \code{x} is returned invisibly
+#' @seealso \code{\link{rise}}
+#' @keywords hplot
+#' @method plot rise
+#' @export
 plot.rise <- function(x, which = "All", set.up = TRUE, ...) {
   STAID <- attr(x, "STAID")
   if(set.up) 

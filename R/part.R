@@ -33,7 +33,7 @@
 #' @examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(ChoptankFlow)
 #'# Process by calendar year as that is the retrieval range
 #'ChopPart <- with(ChoptankFlow, part(Flow, datetime, da=113,

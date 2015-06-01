@@ -52,6 +52,7 @@
 #'with(ConecuhFlows, freqAnal(Flow, Year, desc="Annual Flows", 
 #'  STAID="02371500"))
 #'}
+#' @importFrom stats4 mle
 #' @export
 freqAnal <- function(x, id, desc="", STAID="Unknown", method="Auto") {
   ## Coding history:

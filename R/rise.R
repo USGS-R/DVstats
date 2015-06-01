@@ -19,7 +19,7 @@
 #'@examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(GlacialRidge)
 #'with(GlacialRidge, rise(G12, datetime, MPelev=1126.42, STAID="G12"))
 #'}

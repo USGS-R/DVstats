@@ -32,7 +32,7 @@
 #' @examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(ChoptankFlow)
 #'with(ChoptankFlow, recess(Flow, datetime, STAID="0191000"))
 #'}

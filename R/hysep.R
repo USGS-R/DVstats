@@ -28,7 +28,7 @@
 #' @examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(ChoptankFlow)
 #'# Process by calendar year as that is the retrieval range
 #'ChopPart <- with(ChoptankFlow, hysep(Flow, datetime, da=113,
@@ -80,7 +80,12 @@ hysep <- function(Flow, Dates, Start=NULL, End=NULL, da,
     min(Flow[seq(i - N2star + 1L, i)]) == Flow[i - Mid]
   )
   LocMin <- c(rep(FALSE, Nfil), LocMin, rep(FALSE, Nfil))
-  LocMin <- exp(approx(which(LocMin), log(pmax(Flow[LocMin], 0.01)), xout=seq(Nobs), rule=2)$y)
+  ## Need to trap short periods where only 1 local minimum
+  if(sum(LocMin) == 1L) {
+    warning("Only one local minimum in calibration period")
+    LocMin <- pmax(Flow[LocMin], 0.01)
+  } else
+    LocMin <- exp(approx(which(LocMin), log(pmax(Flow[LocMin], 0.01)), xout=seq(Nobs), rule=2)$y)
   LocMin <- pmin(Flow, LocMin) # recover 0s and tails
   if(select == "fixed")
     BaseQ <- Fixed

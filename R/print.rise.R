@@ -10,7 +10,7 @@
 #' @seealso \code{\link{rise}}
 #' @keywords print
 #' @method print rise
-#' @S3method print rise
+#' @export
 print.rise <- function(x, ...) {
   sumRise <- aggregate(as.data.frame(x[, "Rise", drop=F]), list(Years=year(x$Dates)), sum)
   cat("\tAnnual rise data")

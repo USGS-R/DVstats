@@ -12,10 +12,10 @@
 #'\code{x} and \code{y}.
 #' @return The object \code{x} is returned invisibly
 #' @section Side Effect: The object \code{x} is plotted
-#' @seealso \code{\link{baseflow}}
+#' @seealso \code{\link{bfi}}, \code{\link{hysep}}, \code{\link{part}}, 
 #' @keywords hplot
 #' @method plot baseflow
-#' @S3method plot baseflow
+#' @export
 plot.baseflow <- function(x, which = "All", set.up = TRUE, ...) {
   STAID <- attr(x, "STAID")
   if(set.up) 

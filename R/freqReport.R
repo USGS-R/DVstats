@@ -1,8 +1,8 @@
 #' Create Frequency Analysis Report
 #' 
 #' Create a 2-page pdf file report of a frequency analysis. The 
-#'report contains the text output from \code{print(x)}, the esitmated
-#'values of selected probailities of exceedance, and a diagnostic plot
+#'report contains the text output from \code{print(x)}, the estimated
+#'values of selected probabilities of exceedance, and a diagnostic plot
 #'for each fitted distribution.
 #'
 #' @param x and object of class "freqAnal."

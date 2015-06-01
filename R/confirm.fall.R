@@ -1,22 +1,25 @@
-#'Confirm Streamflow Recessions
+#'Confirm Groundwater Recessions
 #'
-#'This function processes the output of function \code{recess} and requires the user to 
+#'This function processes the output of function \code{fall} and requires the user to 
 #'accept or reject the recession.
 #'
-#' @param x an object of class "recess."
+#' @param x an object of class "fall."
 #' @param all accept all recessions without review?
 #' @param before begin review plot \code{before} days prior to recession.
 #' @param after end review plot \code{after} days after the end of the recession.
 #' @param \dots  not used, required for other methods.
 #' @return The object \code{x} is returned with updated recessions
 #' @import smwrStats
-#' @method confirm recess
+#' @method confirm fall
 #' @export
-confirm.recess <- function(x, all=FALSE, before=1, after=5, ...) {
+confirm.fall <- function(x, all=FALSE, before=3, after=3, ...) {
   ## This function steps though each of the identified recessions and
-  ## forces the user to accept or reject the recession.
+  ## forces the user to accept, reject, or modify the recession.
+  ## A data frame of the accepted or modified recessions is returned.
+  ## The data frame is of class recessions.
+  ## if .Station == TRUE and a STAID has been defined, then the .Station
+  ## list is updated with the median recession index.
   ##
-  ## Begin
   if(all) {
     attr(x, "Confirmed") <- TRUE
     return(x)
@@ -24,31 +27,26 @@ confirm.recess <- function(x, all=FALSE, before=1, after=5, ...) {
   Sel <- x$Recessions
   N <- nrow(Sel)
   keep <- logical(N)
-  i <- 1L
+  i <- 1
   loop <- TRUE
   setGD("Confirm")
   while(loop) {
     plot(x, which=i, set.up=FALSE, before=before, after=after)
     todo <- menu(c("Accept", "Reject"),
-      title=paste("No. ", Sel$Index[i], sep=''))
+                       title=paste("No. ", Sel$Index[i], sep=''))
     if(todo == 0)
       loop <- FALSE
-    else if(todo == 1L) {
+    else if(todo == 1) { # keep it
       keep[i] <- TRUE
-      i <- i + 1L
+      i <- i + 1
       if(i > N) loop <- FALSE
     }
-    else if(todo == 2L) {
-      i <- i + 1L
+    else { # reject it
+      i <- i + 1
       if(i > N) loop <- FALSE
     }
   }
-  ## Close graph to indicate done!
-  dev.off()
-  ## Rename rows 
-  Recessions <- x$Recessions[keep,]
-  rownames(Recessions) <- as.character(seq(nrow(Recessions)))
-  x$Recessions <- Recessions
+  x$Recessions <- Sel[keep, ]
   attr(x, "Confirmed") <- TRUE
   return(x)
 }

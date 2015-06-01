@@ -36,7 +36,7 @@
 #' @examples
 #'
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(QW05078470)
 #'## Return an ordered factor
 #'seasonYear(QW05078470$DATES)
@@ -78,6 +78,7 @@ seasonYear <- function(x, start.month="June", end.month="September", numeric=FAL
   ordered(yr)
 }
 
+#' @rdname seasonYear
 #' @export
 seasonYearMD <- function(x, start.day="06/01", end.day="09/30", numeric=FALSE) {
   ## Coding history:
@@ -86,7 +87,7 @@ seasonYearMD <- function(x, start.day="06/01", end.day="09/30", numeric=FALSE) {
   Jdays <- baseDay(x)
   yr <- year(x)
   if(start.day < end.day) { # Does not overlap the calendar year
-    ## Logic from USGSwsBase::seasons
+    ## Logic from smwrBase::seasons
     breaks1 <- paste(c(start.day, end.day), "1972", sep="/") 
     breaks1 <- as.integer(as.Date(breaks1, format="%m/%d/%Y")) - 
       c(730L, 729L) # Logic wants last day

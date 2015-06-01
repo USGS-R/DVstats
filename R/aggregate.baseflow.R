@@ -19,14 +19,15 @@
 #' @keywords baseflow
 #' @examples
 #'\dontrun{
-#'library(USGSwsData)
+#'library(smwrData)
 #'data(GlacialRidge)
 #'G12.hysep <- with(ChoptankFlow, hysep(Flow, datetime, da=113,
 #'  STAID="01491000"))
 #'# monthly summary of recharge in feet
 #'aggregate(G12.hysep)
 #'}
-#' @S3method aggregate baseflow
+#' @include DVstats-package.R
+#' @export
 #' @method aggregate baseflow
 aggregate.baseflow <- function(x, by="months", index=FALSE, ...) {
   ## Coding history:

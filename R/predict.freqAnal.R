@@ -9,7 +9,7 @@
 #' @return The object \code{x} is returned invisibly.
 #' 
 #' @method predict freqAnal
-#' @S3method predict freqAnal
+#' @export
 predict.freqAnal <- function(object, 
                         probs=c(0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 0.8, 0.9, 0.96, 0.98, 0.99),
                         non.e=TRUE, ...) {

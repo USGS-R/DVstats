@@ -1,22 +1,59 @@
 Package: DVstats
-Version: 0.1
-Date: 2013-05-29
+Version: 0.2.0
+Date: 2015-06-01
 Title: Functions to manipulate daily-values data
 Author: Dave Lorenz <lorenz@usgs.gov>
 Maintainer: Dave Lorenz <lorenz@usgs.gov>
-Depends:
-    lubridate,
-    USGSwsBase,
-    USGSwsGraphs,
-    USGSwsStats,
-    evd,
-    stats4
 Imports:
     robust,
-    methods
+    methods,
+    lubridate,
+    smwrBase,
+    smwrGraphs,
+    smwrStats,
+    evd,
+    stats,
+    stats4
 Suggests:
-    USGSwsData (>= 0.6)
+    smwrData (>= 0.6),
+    dataRetrieval
 Description: This package has data several functions that are useful for
     managing, manipulating, and analyzing daily-values data.
 License: file LICENSE
 LazyLoad: yes
+Collate:
+    'DVstats-package.R'
+    'Lognormal3.R'
+    'aggregate.baseflow.R'
+    'aggregate.rise.R'
+    'baseDur.R'
+    'bfi.R'
+    'climateYear.R'
+    'confirm.fall.R'
+    'confirm.recess.R'
+    'dvStat.R'
+    'extend.R'
+    'fall.R'
+    'flowDurClasses.R'
+    'freqAnal.R'
+    'freqReport.R'
+    'hmean.R'
+    'hysep.R'
+    'join.R'
+    'part.R'
+    'plot.baseflow.R'
+    'plot.fall.R'
+    'plot.freqAnal.R'
+    'plot.recess.R'
+    'plot.rise.R'
+    'predict.freqAnal.R'
+    'print.baseflow.R'
+    'print.fall.R'
+    'print.freqAnal.R'
+    'print.recess.R'
+    'print.rise.R'
+    'recess.R'
+    'rise.R'
+    'seasonYear.R'
+    'setSeasons.R'
+    'subset.fall.R'

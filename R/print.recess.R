@@ -11,7 +11,7 @@
 #'@seealso \code{\link{recess}}
 #'@keywords print
 #'@method print recess
-#'@S3method print recess
+#'@export
 print.recess <- function(x, digits=4, ...) {
   ## print a recess object
   N.recess <- nrow(x$Recessions)

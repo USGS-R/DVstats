@@ -22,7 +22,7 @@
 #' @seealso \code{\link{freqAnal}}
 #' @keywords hplot
 #' @method plot freqAnal
-#' @S3method plot freqAnal
+#' @export
 plot.freqAnal <- function(x, which = "Final", set.up = TRUE, ...) {
   ## Preliminaries
   which=match.arg(which, c("Final", "default", "emp", "lp3", "ln3", "lgev"))
