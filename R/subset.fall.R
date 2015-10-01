@@ -4,7 +4,7 @@
 #'
 #'The values for \code{i} can be either a single numeric index or a single 
 #'character string. If \code{i} is numeric, then extract that element number.
-#'If \code{i} is cahracter, then extract that Index number.
+#'If \code{i} is character, then extract that Index number.
 #'
 #' @rdname subset.fall
 #' @param x an object of class "fall." 

@@ -38,14 +38,14 @@ fall <- function(x, Dates, Start=NULL, End=NULL, by=NULL, MPelev=NULL,
       return(NULL)		
     if(seqno[1] == 0)
       return(NULL)
-    return(c(Start=x[1], End=x[NR], Length=NR))
+    return(c(Start=x[1L], End=x[NR], Length=NR))
   }
   recessSel <- function(x, recess, duration) {
     x2 <- seq(along=x)
     x2 <- tapply(x2, recess, function(y, x, rec, dur)
       eventSel(x[y], rec[y], dur), x=x, rec=recess, dur=duration)
     x2.recno <- as.integer(names(x2)[!sapply(x2, is.null)])
-    if(length(x2.recno) == 0)
+    if(length(x2.recno) == 0L)
       stop("No recessions detected")
     x2 <- as.data.frame(do.call(rbind, x2))
     names(x2) <- c("StartWL", "EndWL", "Length")
@@ -76,7 +76,7 @@ fall <- function(x, Dates, Start=NULL, End=NULL, by=NULL, MPelev=NULL,
   if(!is.null(MPelev))
     x <- MPelev - x
   ## compute the Recession index, must include point 0 for fall
-  Recess <- eventNum(c(NA, diff(x)) <= 0 & c(NA, diff(as.double(Dates))) == 1.0, reset=T)
+  Recess <- eventNum(c(NA, diff(x)) <= 0 & c(NA, diff(as.double(Dates))) == 1.0, reset=TRUE)
   Recess <- pmax(Recess, na2miss(shiftData(Recess, -1), 0))
   Sel <- recessSel(x, Recess, duration=min.duration + 1) # account for point 0
   ## add first estimates of recession indexes
@@ -93,7 +93,7 @@ fall <- function(x, Dates, Start=NULL, End=NULL, by=NULL, MPelev=NULL,
     ## Test if month in selected months and x not all equal
     if(months(Date[i], abbreviate=TRUE) %in% months2Sel && diff(range(xsel)) > 0.001) { # keep it
       keep[i] <- TRUE
-      RRate[i] <- diff(range(xsel))/Len[i]
+      RRate[i] <- diff(range(xsel))/(Len[i] - 1)
     }
   }
   Recessions <- cbind(Sel, Date=Date, RRate=RRate)[keep,]

@@ -3,7 +3,7 @@
 #' Computes recharge from an object of class "rise" from a groundwater rise analysis.
 #'
 #' The argument \code{by} can be either a character indicating the period, or a list
-#'created by \code{setSeasons}. If a character , thne must be "months," "years," 
+#'created by \code{setSeasons}. If a character, then must be "months," "years," 
 #'"calendar years," "water years," or "climate years." May be abbreviated; and 
 #'"years" is the same as "calendar years."
 #'

@@ -1,6 +1,6 @@
 #' Daily Value Durations
 #'
-#' Compute durations .
+#' Identify and compute durations for baseflow or other flow conditions.
 #'
 #' @param x the daily value data to be summarized. Missing values are permitted, but
 #'are treated as gaps---durations are reset.

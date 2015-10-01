@@ -1,0 +1,261 @@
+\documentclass{article}
+\parskip 3pt
+%\VignetteIndexEntry{Example 7-day low flows}
+%\VignetteDepends{DVstats}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\raggedright
+\parindent 30 pt
+
+\title{Example computation of 7-day low flows for climate year and summer season}
+
+\author{Dave Lorenz}
+
+\maketitle
+
+This example illustrates retrieving daily values data from NWISweb and computing the 7-day low flow values for each climate year (the year ending March 31) and summer season (beginning June and ending  September). This example uses daily flow data from USGS station 05484500, Raccoon River at Van Meter, Iowa through water year 2012 (September 30, 2012).
+
+
+<<echo=TRUE>>=
+# Load the DVstats package and retrieve the data
+library(DVstats)
+library(dataRetrieval)
+library(smwrBase) # needed for screenData and other functions
+library(smwrGraphs) # needed to create the graphs
+RRVM <- renameNWISColumns(readNWISdv("05484500", "00060", endDate="2012-09-30"))
+# The screenData function is useful to review for 
+# complete record, default is by calendar year.
+with(RRVM, screenData(Date, Flow))
+# The record is complete, beginning 1915-04-25
+@
+
+\eject
+\section{Compute the climate year 7-day low flows}
+
+The \texttt{dvStat} function is used to compute user-defined summary statistics for daily values. Each summary statistic requires a new call to \texttt{dvStat}. The arguments to \texttt{dvStat} include \texttt{x}, which is the daily value to be summarized; \texttt{Dates}, the date for each value in \texttt{x}; \texttt{Start} and \texttt{End}, that can be used to extract the data for a user-defined period of time; \texttt{by}, a grouping variable; \texttt{pre}, any preprocessing function; \texttt{stat}, the summary statistical function---it must return a single value and must accept the \texttt{na.rm} argument; \texttt{na.rm}, the value to use for the \texttt{na.rm} argument to \texttt{stat}; \texttt{STAID}, any name the user wants to use for the station; and any additional arguments to \texttt{pre}. For interactive use, it is easiest to use the function \texttt{with} to make specifying columns easier.
+
+To compute climate year statistics, the \texttt{by} argument can be defined by the \texttt{climateYear} function supplying the same data as for the \texttt{Dates}.
+
+To compute 7-day (or other) running averages, \texttt{pre} should be set to \texttt{movingAve} and its arguments \texttt{span} and \texttt{pos} should be set to 7 and "trailing" as shown in the example below. 
+
+By default, the statistic (\texttt{stat}) in \texttt{min}, which will give the low flows.
+
+<<echo=TRUE>>=
+# Compute the 7-day low flow for each climate year.
+RRVM7ClimY <- with(RRVM, 
+  dvStat(Flow, Date,
+    by=climateYear(Date),
+    pre=movingAve,
+    STAID="05484500",
+    span=7, pos="trailing"))
+# print the first and last few rows of the output
+head(RRVM7ClimY)
+tail(RRVM7ClimY)
+@
+
+The data are the station id, \texttt{STAID}; the year or season, \texttt{group} as a factor; the number of observations used to compute the statistic, \texttt{Nobs}; the statistic, \texttt{min} in this case; and the date of the value, \texttt{Date}. The date of the value is the first day for the minimum average flow for the preceding 7 days,
+
+The first and last rows are incomplete, as indicated by the number of observations that were used (\texttt{Nobs}). To use only complete climate years, the data can be subsetted by extracting only those rows where \texttt{Nobs} is greater than or equal to 365 (leap years have 366 days). Alternatively, \texttt{Start} and \texttt{End} could be set to the climate year start and end dates, but one would still need to possibly subset for incomplete years in the record.
+
+<<echo=TRUE>>=
+# Extract complete climate year data.
+RRVM7ClimY <- subset(RRVM7ClimY, Nobs >= 365)
+# print the first and last few rows of the output
+head(RRVM7ClimY)
+tail(RRVM7ClimY)
+# Change the name of the statistic
+names(RRVM7ClimY)[4] <- "LowQ7"
+@
+
+\eject
+\section{Plots and summary of the climate year data}
+
+The probability and time-series plots can instructive. Use the \texttt{Date} column instead of \texttt{Group} because \texttt{Group} is a factor and can't be treated as a date.
+
+<<echo=TRUE>>=
+# setSweave is required for the vignette.
+setSweave("SevenDay_01", 5, 5)
+with(RRVM7ClimY, probPlot(LowQ7, yaxis.log=T, xlabels=5))
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_01.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 1.} The probability plot.
+
+\eject
+<<echo=TRUE>>=
+# setSweave is required for the vignette.
+setSweave("SevenDay_02", 5, 5)
+with(RRVM7ClimY, timePlot(Date, LowQ7, 
+  Plot=list(what="points")))
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_02.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 2.} The time-series plot.
+
+Figure 2 suggests a trend of increasing low-flows over time. Some applications of low-flow analysis can require a trend analysis to establish a base period. A thorough trend analysis would include an analysis of the relation of flows to precipitation and possibly land use changes and is beyond the scope of this vignette.
+
+A useful summary statistic for annual series is a table of the number of occurances of the lowest flows by month.For these data, most low flows occur during the winter months.
+
+<<echo=TRUE>>=
+with(RRVM7ClimY, table(month(Date, label=TRUE)))
+@
+
+\eject
+\section{Compute the summer season 7-day low flows}
+
+To compute seasonal statistics, the \texttt{by} argument can be defined by the \texttt{seasonYear} function supplying the same data as for the \texttt{Dates} and setting the beginning and ending months by the \texttt{start.month} and \texttt{end.month} arguments, which are "June' and "September" by default.
+
+<<echo=TRUE>>=
+# Compute the 7-day low flow for each climate year.
+RRVM7Summ <- with(RRVM, 
+  dvStat(Flow, Date,
+    by=seasonYear(Date),
+    pre=movingAve,
+    STAID="05484500",
+    span=7, pos="trailing"))
+# print the first and last few rows of the output
+head(RRVM7Summ)
+tail(RRVM7Summ)
+@
+
+The first and last rows are complete in this case because the streamflow record started in April of 1915 and continued through September of 2012. Note that there is a disconnect between the summer period year and the climate year. For example, the summer period year 2000 is actually in the 2001 climate year. This example will retain all of the data. But will rename column 4.
+
+<<echo=TRUE>>=
+# Change the name of the statistic
+names(RRVM7Summ)[4] <- "LowQ7"
+@
+
+\eject
+\section{Quick plots of the summer data}
+
+The probability and time-series plots can instructive. Use the \texttt{Date} column instead of \texttt{Group} because \texttt{Group} is a factor and can't be treated as a date.
+
+<<echo=TRUE>>=
+# setSweave is required for the vignette.
+setSweave("SevenDay_03", 5, 5)
+with(RRVM7Summ, probPlot(LowQ7, yaxis.log=T, xlabels=5))
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_03.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 3.} The probability plot of summer low flows.
+
+\eject
+<<echo=TRUE>>=
+# setSweave is required for the vignette.
+setSweave("SevenDay_04", 5, 5)
+with(RRVM7Summ, timePlot(Date, LowQ7, 
+    Plot=list(what="points")))
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_04.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 4.} The time-series plot of summer low flows.
+
+\eject
+\section{Compute the frequency analyses}
+
+The function \texttt{freqAnal} will perform a frequency analysis of low-flow data. It tries to fit 3 distributions---the log-Pearson type III, a 3-parameter log-normal, and the log-generalized extreme value. The log-Pearson type III distribution is fit using the method of moments--compute the mean, standard deviation, and skew of the logarithms of the data. The other distributions are fit using the method of maximum likelihood. The default distribution selection procedure preferentially selects the log-Pearson type III, then the 3-parameter log-normal, with the log-generalized extreme value as the last choice.
+
+<<echo=TRUE>>=
+# The Annual analysis
+RRVM7ClimY.frq <- with(RRVM7ClimY, freqAnal(LowQ7, id=Group,
+    desc="Annual 7-day Low Flow", STAID="05484500"))
+# The Summer analysis
+RRVM7Summ.frq <- with(RRVM7Summ, freqAnal(LowQ7, id=Group,
+    desc="Summer 7-day Low Flow", STAID="05484500"))
+@
+
+The respective reports are generated on the next two pages.
+
+
+\eject
+<<echo=TRUE>>=
+# The Annual analysis
+print(RRVM7ClimY.frq)
+@
+
+\eject
+<<echo=TRUE>>=
+# The Summer analysis
+print(RRVM7Summ.frq)
+@
+
+In both cases, the log-Pearson type III distribution was selected. The probability plot correlation coefficient is very close to 1, suggesting a very good fit. The \texttt{plot} function can be used to assess the selected fit.
+
+\eject
+<<echo=TRUE>>=
+# The Annual analysis
+setSweave("SevenDay_05", 5, 5)
+plot(RRVM7ClimY.frq, which="default", set.up=FALSE)
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_05.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 5.} The log-Pearson type III fit to the annual data.
+
+\eject
+<<echo=TRUE>>=
+# The Annual analysis
+setSweave("SevenDay_06", 5, 5)
+plot(RRVM7Summ.frq, which="default", set.up=FALSE)
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_06.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 6.} The log-Pearson type III fit to the summer data.
+
+The fit is very good in both cases. The more traditional low-flow graphs (on a normal probability scale) and estimated values for selected annual or seasonal probabilties are shown on the final two pages.
+
+\eject
+<<echo=TRUE>>=
+# The Annual analysis
+predict(RRVM7ClimY.frq)
+setSweave("SevenDay_07", 5, 5)
+plot(RRVM7ClimY.frq, which="default", set.up=FALSE)
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_07.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 7.} The log-Pearson type III estiamtes for the annual data.
+
+\eject
+<<echo=TRUE>>=
+# The Summer analysis
+predict(RRVM7Summ.frq)
+setSweave("SevenDay_08", 5, 5)
+plot(RRVM7Summ.frq, set.up=FALSE)
+graphics.off()
+@
+<<results=tex, echo=FALSE>>=
+cat("\\includegraphics{SevenDay_08.pdf}\n")
+cat("\\paragraph{}\n")
+@
+
+\textbf{Figure 8.} The log-Pearson type III estimates for the summer data.
+
+\end{document}

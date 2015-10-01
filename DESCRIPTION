@@ -1,6 +1,6 @@
 Package: DVstats
-Version: 0.2.0
-Date: 2015-06-01
+Version: 0.3.1
+Date: 2015-10-01
 Title: Functions to manipulate daily-values data
 Author: Dave Lorenz <lorenz@usgs.gov>
 Maintainer: Dave Lorenz <lorenz@usgs.gov>
@@ -21,17 +21,24 @@ Description: This package has data several functions that are useful for
     managing, manipulating, and analyzing daily-values data.
 License: file LICENSE
 LazyLoad: yes
+LazyData: yes
 Collate:
     'DVstats-package.R'
     'Lognormal3.R'
+    'PredModels.R'
+    'QPPQ.R'
     'aggregate.baseflow.R'
     'aggregate.rise.R'
+    'aggregate.rora.R'
+    'antecedentRR.R'
     'baseDur.R'
     'bfi.R'
     'climateYear.R'
     'confirm.fall.R'
     'confirm.recess.R'
+    'consistentFDC.R'
     'dvStat.R'
+    'estFDC.R'
     'extend.R'
     'fall.R'
     'flowDurClasses.R'
@@ -46,14 +53,18 @@ Collate:
     'plot.freqAnal.R'
     'plot.recess.R'
     'plot.rise.R'
+    'plot.rora.R'
     'predict.freqAnal.R'
     'print.baseflow.R'
     'print.fall.R'
     'print.freqAnal.R'
     'print.recess.R'
     'print.rise.R'
+    'print.rora.R'
     'recess.R'
     'rise.R'
+    'rora.R'
     'seasonYear.R'
     'setSeasons.R'
     'subset.fall.R'
+    'wtf.R'
