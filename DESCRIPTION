@@ -1,6 +1,6 @@
 Package: DVstats
-Version: 0.3.1
-Date: 2015-10-01
+Version: 0.3.3
+Date: 2016-01-25
 Title: Functions to manipulate daily-values data
 Author: Dave Lorenz <lorenz@usgs.gov>
 Maintainer: Dave Lorenz <lorenz@usgs.gov>
@@ -11,15 +11,17 @@ Imports:
     smwrBase,
     smwrGraphs,
     smwrStats,
+    smwrQW,
     evd,
     stats,
     stats4
 Suggests:
     smwrData (>= 0.6),
-    dataRetrieval
+    dataRetrieval,
+    plyr
 Description: This package has data several functions that are useful for
     managing, manipulating, and analyzing daily-values data.
-License: file LICENSE
+License: CC0
 LazyLoad: yes
 LazyData: yes
 Collate:
@@ -34,6 +36,7 @@ Collate:
     'baseDur.R'
     'bfi.R'
     'climateYear.R'
+    'confirm.R'
     'confirm.fall.R'
     'confirm.recess.R'
     'consistentFDC.R'
@@ -68,3 +71,4 @@ Collate:
     'setSeasons.R'
     'subset.fall.R'
     'wtf.R'
+RoxygenNote: 5.0.1

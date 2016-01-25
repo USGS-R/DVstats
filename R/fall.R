@@ -93,7 +93,7 @@ fall <- function(x, Dates, Start=NULL, End=NULL, by=NULL, MPelev=NULL,
     ## Test if month in selected months and x not all equal
     if(months(Date[i], abbreviate=TRUE) %in% months2Sel && diff(range(xsel)) > 0.001) { # keep it
       keep[i] <- TRUE
-      RRate[i] <- diff(range(xsel))/(Len[i] - 1)
+      RRate[i] <- diff(range(xsel))/(Len[i])
     }
   }
   Recessions <- cbind(Sel, Date=Date, RRate=RRate)[keep,]

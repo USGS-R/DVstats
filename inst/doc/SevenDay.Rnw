@@ -1,7 +1,11 @@
 \documentclass{article}
-\parskip 3pt
+\parskip 6pt
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
 %\VignetteIndexEntry{Example 7-day low flows}
 %\VignetteDepends{DVstats}
+%\VignetteDepends{dataRetrieval}
+%\VignetteDepends{smwrBase}
+%\VignetteDepends{smwrGraphs}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
@@ -14,9 +18,16 @@
 
 \maketitle
 
-This example illustrates retrieving daily values data from NWISweb and computing the 7-day low flow values for each climate year (the year ending March 31) and summer season (beginning June and ending  September). This example uses daily flow data from USGS station 05484500, Raccoon River at Van Meter, Iowa through water year 2012 (September 30, 2012).
+\begin{abstract}
+This example illustrates retrieving daily values data from NWISWeb and computing the 7-day low flow values for each climate year (the year ending March 31) and summer season (beginning June and ending  September). This example uses daily flow data from USGS station 05484500, Raccoon River at Van Meter, Iowa through water year 2012 (September 30, 2012).
+\end{abstract}
 
+\tableofcontents
 
+\eject
+\section{Introduction}
+
+These examples use data from NWISWeb. The data are retrieved in the following code.
 <<echo=TRUE>>=
 # Load the DVstats package and retrieve the data
 library(DVstats)

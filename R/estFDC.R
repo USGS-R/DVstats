@@ -10,9 +10,11 @@
 #' @param expand logical value, if \code{TRUE}, then expand the computed points so that
 #'a graph can be prepared, otherwise only the 13 estimated points.
 #' @return A data frame containing the columns Probs, the exceedance probabilities,
-#'and FDC, the estiamte streamflow at the specified probability level.
+#'and FDC, the estiamte streamflow at the specified probability level. The streamflows
+#'are adjusted so the that are consistently non increasing.
 #' @note The selected points on the FDC can also be obtained using StreamStats for
 #'Minnesota.
+#' @import smwrQW
 #' @export
 estFDC <- function(site.data, region, expand=TRUE) {
 	if(missing(region)) {
@@ -21,14 +23,14 @@ estFDC <- function(site.data, region, expand=TRUE) {
 	if(nrow(site.data) != 1) {
 		stop("can only fit exactly 1 site at a time")
 	}
-	index <- c("P_0_0001", "P_0_001", "P_0_02", "P_0_05", "P_0_1", "P_0_25", "P_0_5", "P_0_75",  
-						 "P_0_9", "P_0_95", "P_0_99", "P_0_999", "P_0_9999")
-	# These correspond to 
+	# The sequence correspond to 
 	probs <- c(0.0001, 0.001, 0.02, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 0.999, 0.9999)
 	retval <- numeric(13)
+	# get PredModels from the package
+	PredModels <- get("PredModels")
 	# populate the FDC
 	for(i in seq(13)) {
-		retval[i] <- predict(PredModels[[region]][[index[i]]], site.data)
+		retval[i] <- predict(PredModels[[region]][[i]], site.data)
 	}
 	retval <- consistentFDC(retval)
 	if(expand) {

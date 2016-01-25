@@ -5,11 +5,11 @@
 #'
 #'\tabular{ll}{ Package: \tab DVstats\cr 
 #'Type: \tab Package\cr 
-#'Version: \tab 0.3.1\cr 
-#'Date: \tab 2015-10-01\cr 
-#'License: \tab File LICENSE\cr 
+#'Version: \tab 0.3.3\cr 
+#'Date: \tab 2016-01-25\cr 
+#'License: \tab CC0\cr 
 #'Depends: \tab methods, lubridate, smwrBase, smwrGraphs, 
-#' smwrStats, evd, stats, stats4, robust\cr } 
+#' smwrStats, smwrQW, evd, stats, stats4, robust\cr } 
 #'This package contains functions that manage or manipipulate  
 #'hydrologic daily-value data. The functions in this package
 #'are listed below, grouped by a general description of the task.
@@ -38,6 +38,7 @@
 #'
 #'Functions to compute or analyze flow-duration statistics.\cr
 #'\code{\link{baseDur}}\cr
+#'\code{\link{consistentFDC}}\cr
 #'\code{\link{flowDurClasses}}\cr
 #'\code{\link{estFDC}}\cr
 #'\code{\link{QPPQ}}\cr
@@ -54,8 +55,11 @@
 #'Functions for streamflow recession analysis.\cr
 #'\code{\link{join}}\cr
 #'\code{\link{recess}}\cr
+#'\code{\link{rora}}\cr
+#'\code{\link{aggregate.rora}}\cr
 #'\code{\link{confirm.recess}}\cr
 #'\code{\link{plot.recess}}\cr
+#'\code{\link{plot.rora}}\cr
 #'\code{\link{print.recess}}\cr
 #'
 #'Support and miscellaneous functions.\cr
@@ -84,4 +88,5 @@
 #' @import evd
 #' @import stats
 NULL
-
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information. Although this software program has been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S. Government as to the accuracy and functioning of the program and related program material nor shall the fact of distribution constitute any such warranty, and no responsibility is assumed by the USGS in connection therewith.")}

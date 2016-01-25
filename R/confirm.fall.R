@@ -9,7 +9,7 @@
 #' @param after end review plot \code{after} days after the end of the recession.
 #' @param \dots  not used, required for other methods.
 #' @return The object \code{x} is returned with updated recessions
-#' @import smwrStats
+#' @keywords manip
 #' @method confirm fall
 #' @export
 confirm.fall <- function(x, all=FALSE, before=3, after=3, ...) {

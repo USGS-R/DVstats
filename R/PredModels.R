@@ -1,6 +1,6 @@
 #' Prediction Models
 
-#' The 13 regional predcition models for the points on a FDC.
+#' The 13 regional prediction models for the points on a FDC.
 #' @name PredModels
 #' @docType data
 #' @usage PredModels

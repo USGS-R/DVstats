@@ -5,66 +5,95 @@
 #'displacement analysis.
 #'
 #' @param x an object of class "rora"
-#' @param period character string indicating the grouping of the graphs.
-#'Must be a valid argument to the \code{by} arguemnt of \code{seq.Date}.
-#' @param col colors. 
+#' @param which either "All" for the entire hydrogaph, "by year" for calendar year
+#'hydrographs, or the calendar year to plot.
+#' @param set.up set up the graphics page? Set to \code{FALSE} if the graphics page
+#'has been set up with a call to \code{setPage}. 
+#' @param colors a vector of length 3 specifying the colors for the peak and
+#'critical time, the hypothetical streamflow recession, and the calulated
+#'streamflow recession displacement, respectively.
 #' @param \dots  not used, required for other methods.
 #' @return The object \code{x} is returned invisibly
 #' @seealso \code{\link{rora}}
 #' @keywords hplot
 #' @method plot rora
 #' @export
-plot.rora <- function(x, period="quarter", col=c(2,4,5), ...) {
+plot.rora <- function(x, which = "All", set.up = TRUE, 
+                      colors=c("none", "blue", "cyan"), ...) {
   if(x$ierr > 0) {
     cat("Fatal error in rora, nothing to plot\n")
     return(invisible(x))
   }
+  if(set.up) 
+    setGD("RORA")
+  Years <- x$iyr
+  YearP <- x$year
+  if(is.character(which)) {
+    which <- match.arg(which, c("All", "by year"))
+    if(which == "All") { # create 1 group to plot
+      Years <- as.integer(Years %in% unique(YearP))
+      YearP <- rep(1L, length(YearP))
+      loop <- 1L
+    } else {
+      loop <- unique(YearP)
+    }
+  } else {
+    loop <- which
+  }
   Start <- x$iyearst
   End <- x$iyearen
   iyear <- x$iyr
-  ## select the streamflow data
-  Flow <- x$flow[iyear >= Start & iyear <= End]
-  Dates <- as.Date(ISOdate(iyear, x$imon, x$idy))[iyear >= Start & iyear <= End]
+  ## select the  data
+  Flow <- x$flow
+  Dates <- as.Date(ISOdate(iyear, x$imon, x$idy))
   DDates <- as.double(Dates)
-  iyear <- iyear[iyear >= Start & iyear <= End]
+  iyear <- iyear
   ## extract peaks
   tp <- as.Date(ISOdate(x$year, x$mon, x$day))
   ta <- tp + x$ta
   tbc <- shiftData(ta, -1)
   tbc[length(tbc)] <- tp[length(tbc)] + 0.2144 * x$k
   te <- tp + x$te
-  qe <- log10(Flow[as.integer(Dates) %in% as.integer(te)])
-  qa <- log10(x$qa)
-  qb <- log10(x$qb)
-  qc <- log10(x$qc)
-  qp <- log10(x$qp)
-  ## make periods
-  Pers <- as.double(seq(as.Date(ISOdate(Start, 1, 1)),
-                            as.Date(ISOdate(End+1, 1, 1)), by=period))
-  Percut <- as.integer(cut(as.double(Dates), Pers-.5, include.lowest=T))
-  Perloop <- unique(Percut)
-  for(i in Perloop) {
-    peaks <- which(tp >= Pers[i] & tp < Pers[i+1])
+  qe <- Flow[as.integer(Dates) %in% as.integer(te)]
+  qa <- x$qa
+  qb <- x$qb
+  qc <- x$qc
+  qp <- x$qp
+  # Loop through the periods in which
+  for(i in loop) {
+    peaks <- which(YearP == i)
+    sel <- Years == i
     if(length(peaks)) {
-      Sel <- DDates >= Pers[i] & DDates <= tbc[max(peaks)] + 1 # account for fraction
-      ylim <- c(10^(min(qb[peaks]-.2)), max(Flow[Sel]))
-      Dlim <- c(Pers[i], tbc[max(peaks)] + 1)
+      ylim <- c(10^(min(log10(qb[peaks])-.2)), max(Flow[sel]))
     } else {
-      Sel <- DDates >= Pers[i] & DDates < Pers[i+1]
-      ylim <- range(Flow[Sel])
-      Dlim <- c(Pers[i], Pers[i+1])
+      ylim <- range(Flow[sel])
     }
-    plot(as.Date(Dlim, origin="1970-01-01"), ylim, log='y', ylab="streamflow",
-         xlab="", type='n')
-    lines(DDates[Sel], log10(Flow[Sel]))
+    AA.pl <- timePlot(range(Dates[sel]), ylim, Plot=list(what="none"),
+                      ytitle="Streamflow", xtitle="", yaxis.log=TRUE)
+    addXY(DDates[sel], Flow[sel], current=AA.pl)
     for(j in peaks) {
-      lines(c(tbc[j], tp[j], tp[j]), c(qb[j], qb[j], qp[j]), col=col[1])
-      points(ta[j], qa[j])
-      points(tbc[j], qb[j])
-      lines(c(ta[j], tbc[j]), c(qa[j], qb[j]), col=col[2])
-      points(tbc[j], qc[j])
-      lines(c(te[j], tbc[j]), c(qe[j], qc[j]), col=col[2])
-      lines(c(tbc[j], tbc[j]), c(qb[j], qc[j]), col=col[3])
+      # The peak and critical time
+      if(colors[1L] != "none") {
+        addXY(c(tbc[j], tp[j], tp[j]), c(qb[j], qb[j], qp[j]),
+              Plot=list(what="lines", color=colors[1L]), current=AA.pl)
+      }
+      # The recessions
+      if(colors[2L] != "none") {
+        # These are the recessions beginning at the end of TC for the previous peak recession
+        addXY(c(ta[j], tbc[j]), c(qa[j], qb[j]),
+              Plot=list(what="lines", color=colors[2L], size=0.05),
+              current=AA.pl)
+        # These are the recessions from the actual beginning of the peak
+        addXY(c(te[j], tbc[j]), c(qe[j], qc[j]),
+              Plot=list(what="lines", color=colors[2L], size=0.05),
+              current=AA.pl)
+      }
+      # The streamflow displacements
+      if(colors[3L] != "none") {
+        addXY(c(tbc[j], tbc[j]), c(qb[j], qc[j]),
+              Plot=list(what="overlaid", fill=FALSE, color=colors[3L], size=0.04),
+              current=AA.pl)
+      }
     } # end j loop
   } # end i loop
   invisible(x)

@@ -1,4 +1,3 @@
-# This needs work--not converted fro S+ to R
 #' Compute Recharge
 #'
 #' Computes recharge from an object of class "rora" from a streamflow recession 
@@ -12,63 +11,44 @@
 #' @param x an object of class "rora."
 #' @param by the time period to aggregate by. See \bold{Details}.
 #' @param \dots  not used, required for other methods.
-#' @return The recharge for each period specified in \code{by}. The units are
-#'the same as for \code{x}.
+#' @return A data frame reporting the recharge and number of peaks for each period 
+#'specified in \code{by}. The units of recharge are inches.
 #' @seealso \code{\link{rora}}, \code{\link{setSeasons}}
 #' @keywords recharge
 #' @examples
-#'\dontrun{
-#'library(smwrData)
-#'data(GlacialRidge)
-#'G12.rise <- with(GlacialRidge, rise(G12, datetime, MPelev=1126.42, STAID="G12"))
-#'# monthly summary of recharge in feet
-#'aggregate(G12.rise)
-#'}
+#' # See the vignette
 #' @export
 #' @method aggregate rora
 aggregate.rora <- function(x, by="months", ...) {
   ## by must be "weeks", "months", "quarters", "years", or "water.year"
   ## unlike aggregate, partial match allowed
   if(x$ierr > 0) {
-    cat("Fatal error in rora, nothing to aggregate\n")
-    return(x)
+    stop("Fatal error in rora, nothing to aggregate")
   }
-  timeDate <- timeSeq <- timeSreies <- aggregateSeries <- wdydy <- function(...) {
-    stop("not converted to R yet")
+  Dates <- as.Date(ISOdate(x$year, x$mon, x$day))
+  if(is.character(by)) {
+    by <- match.arg(by, c("months", "years", "water years", "climate years", "calendar years"))
+    INDEX <- switch(by,
+                    "months"=paste(months(Dates), year(Dates), sep=" "),
+                    "years"=year(Dates),
+                    "water years"=waterYear(Dates),
+                    "climate years"=climateYear(Dates),
+                    "calendar yeears"=year(Dates))
   }
-  Dates <- timeDate(julian=julian(x$mon, x$day, x$year))
-  ## construct complete series
-  CDates <- timeSeq(Dates[1], Dates[length(x$year)], by='days')
-  Rech <- double(length(CDates))
-  Num <- double(length(CDates))
-  Rech[CDates %in% Dates] <- x$rech
-  Num[CDates %in% Dates] <- 1
-  data <- timeSeries(cbind(Rech, Num), positions.=CDates)
-  Per <- c("weeks", "months", "quarters", "years", "water.year")
-  by.match <- pmatch(by, Per, nomatch=0)
-  if(by.match == 0)
-    stop(paste("invalid by value: ", by, sep=""))
-  by <- Per[by.match]
-  if(by.match == 5) {
-    WY <- range(wdydy(Dates)$year)
-    WY <- seq(WY[1] - 1, WY[2] + 1)
-    WY <- timeDate(julian=julian(10,1,WY))
-    retval <- aggregateSeries(data, pos=WY, FUN=sum)
-  } else {
-    retval <- aggregateSeries(data, by=by, FUN=sum, week.align=0)
+  else { # must be season object
+    tmp <- by # create a temporary list with the same names as the seasons
+    for(i in names(by)) {
+      tmp.ndx <- seasonYear(Dates, by[[i]][1L], by[[i]][2L], numeric=TRUE)
+      tmp.ndx[!is.na(tmp.ndx)] <- paste(i, tmp.ndx[!is.na(tmp.ndx)], sep=" ")
+      tmp[[i]] <- tmp.ndx
+    }
+    INDEX <- coalesce(do.call(cbind, tmp))
   }
-  retval <- data.frame(retval@positions, retval@data[,1], retval@data[,2])
-  names(retval) <- c("Period", "Recharge", "Npeaks")
-  FMT <- c("Week of %2m/%2d/%4Y", "%b %Y", "Q%q %Y")
-  if(by.match < 4) {
-    retval$Period@format <- FMT[by.match]
-    retval$Period <- as.character(retval$Period)
-    retval$Period <- factor(retval$Period, levels=retval$Period) # maintain order
-  } else if(by.match == 4)
-    retval$Period <- years(retval$Period)
-  else {
-    retval$Period <- waterYear(retval$Period)
-    levels(retval$Period) <- paste("WY", levels(retval$Period)) # make it clear
-  }
+  ## Now ready to aggregate the data
+  INDEX <- factor(INDEX, levels=unique(INDEX)) # keep order
+  rech <- tapply(x$rech, INDEX, sum)
+  npk <- tapply(x$rech, INDEX, length)
+  retval <- data.frame(Period=names(rech), Recharge=rech, NumPeaks=npk,
+                       row.names=as.character(seq(along=rech)))
   return(retval)
 }

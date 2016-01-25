@@ -1,0 +1,170 @@
+\documentclass{article}
+\parskip 6pt
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+%\VignetteIndexEntry{Master Groundwater Recession Curve}
+%\VignetteDepends{DVstats}
+%\VignetteDepends{smwrGraphs}
+%\VignetteDepends{smwrData}
+%\VignetteDepends{plyr}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\raggedright
+
+
+\title{Master Groundwater Recession Curve}
+
+\author{Dave Lorenz}
+
+\maketitle
+
+\begin{abstract}
+These examples demonstrate how to construct a master recession curve that describes the general rate of water-level decline in a well. The theory and application are described in Delin and others (2007). The current version of DVstats does not contain functions that directly compute the master recession curve, the details are provided in these examples.
+\end{abstract}
+
+\tableofcontents
+
+\eject
+\section{Introduction}
+
+These examples use data from the smwrData package. The GlacialRidge dataset contains daily water levels for several wells for the water year 2008. The data are retrieved in the following code.
+<<echo=TRUE>>=
+# Load the smwrData, and smwrGraphs (used for graphing) packages
+library(smwrData)
+# Get the dataset
+data(GlacialRidge)
+library(smwrGraphs)
+library(DVstats)
+@
+
+\eject
+\section{The Master Recession Curve}
+
+Delin and others (2007) describe the construction of a master recession curve that represent the general decline of water level in characterized by a single ''pour point.'' It is a log-linear relation that asymptotically approaches the level of the ''pour point.'' The general procedure requires a set of recessions created by the \texttt{fall} function. The user is expected to review and approve the recessions, or reject one a recession if it is not typical. The recession data can then be extracted and used in the nonlinear regression. The code below computes, confirms, and extracts the recessions.
+
+<<echo=TRUE>>=
+# Compute the recessions
+G12.fall <- with(GlacialRidge, fall(G12, datetime, MPelev=1126.42, STAID="G12"))
+# Plot the recessions, setSweave required for this vignette
+setSweave("plot01", 6, 6)
+plot(G12.fall, set.up=FALSE)
+# Required call to close PDF output graphics
+graphics.off()
+# None of the recessions look drastically out of place--accept all
+# Note that recession number 36 does look a bit steep relative to the
+# others near it, but not terribly out of place
+# The confirm function is used to accept/reject recessions
+G12.fall <- confirm(G12.fall, all=TRUE)
+print(G12.fall)
+# Extract and print the recession data
+G12.rec <- G12.fall$Recessions
+G12.rec
+@
+
+\includegraphics{plot01.pdf}
+\paragraph{}
+
+
+\textbf{Figure 1.} The groundwater recessions of at least 10 days duration for G12.
+
+The next step is to build the nonlinear regression model as described by Delin and others (2007). There are 2 parameters to estimate in the model, d the effective elevation of the ''pour point''; and RR the recession rate in log units per day. The data corresponding to equation 4 in Delin and others (2007) are EndWL is \(H_t\), StartWL is \(H_0\), and Length is \(t\). The following code builds the regression model and plots the computed recessions against the observed recessions.
+
+<<echo=TRUE>>=
+# Build the regression model, Retain elevations rather than log as eqn 4
+# Compute the minimum water level to use as starting value for d
+MinWL <- min(G12.rec$EndWL)
+G12.nls <- nls(EndWL ~ 
+    exp(log(StartWL - d) + RR*Length) + d, data=G12.rec, start=c(d=MinWL-.5, RR=-.01))
+G12.nls
+# Plot the actual recessions and estimated recessions
+# setSweave required for this vignette
+setSweave("plot02", 6, 6)
+plot(G12.fall, set.up=FALSE)
+# Add the segments, setting line weights
+with(G12.rec, segments(0, StartWL, Length, fitted(G12.nls), col="red",
+   lwd=stdWt()))
+# Required call to close PDF output graphics
+graphics.off()
+@
+
+\includegraphics{plot02.pdf}
+\paragraph{}
+
+
+\textbf{Figure 2.} The actual and master-recession curve groundwater recessions for G12.
+
+There is good general agreement between the observed and estimated recessions. As expected the greatest difference is for recession number 36. There is no WTF function that uses the master recession curve in the current version of DVstats, but the curve can be drawn as shown in the following code.
+
+<<echo=TRUE>>=
+# Set up the graphics device
+setSweave("plot03", 6, 6)
+# Construct a dataset for the estimations
+G12.mrc <- data.frame(StartWL=1120.65, Length=0:100)
+G12.mrc$EndWL <- predict(G12.nls, G12.mrc)
+# Plot it
+with(G12.mrc, xyPlot(Length, EndWL, Plot=list(what="lines", color="red"),
+  xtitle="Recession duration, in days", ytitle="Groundwater Level"))
+# Required call to close PDF output graphics
+graphics.off()
+@
+
+\includegraphics{plot03.pdf}
+\paragraph{}
+
+
+\textbf{Figure 3.} The master-recession curve for G12, starting at elevation 1120.65.
+
+\eject
+\section{Alternate Master Recession Curve}
+
+The master recession curve described by Delin and others (2007) does not work well for all wells. Some wells can have multiple ''pour points'' or other factors that change the shape of the curve as the recession proceeds. An alternative master recession curve can be developed for those wells that fits a smooth curve rather than a fixed log-linear curve. One procedure for computing a flexible, smooth master recession curve is described in the following code. The general approach is to compute the recession for short periods and the water level for that time to compute the average recession rate for any water level
+
+<<echo=TRUE>>=
+# First extract the recession identified by fall
+# The extraction function for objects of class "fall" only accepts
+# a single index value, hence requiring this unusual expression
+G12.all <- do.call(rbind, lapply(seq(nrow(G12.rec)), function(i) G12.fall[i]))
+# The ddply function in plyr is a convenient way to aggregate data
+library(plyr)
+# For this example, use a period of 3 days--StartWL is the midrange of the water level;
+# del is the decrease in the water level, in units of per day; and Len is the
+# length of the period--required to remove periods of less than 3 days
+G12.agg <- ddply(G12.all, .(Seqno %/% 3, Index), summarize, 
+  StartWL=sum(range(GWLevel))/2, del=diff(range(GWLevel))/2, Len=length(GWLevel))
+G12.agg <- subset(G12.agg, Len == 3)
+# Use loess to construct a smooth curve to describe the recession rate for
+# any given starting elevation. The parameters of the loess fit must be set
+# so that the result is a continuously increasing function
+G12.lo <- loess(del ~ StartWL, data=G12.agg, degree=1, span=1,
+  control=loess.control(surface = "direct"))
+# Print the model and build a dataset of the alternate recession curve
+G12.lo
+G12.arc <- data.frame(StartWL=seq(1119,1120.65, by=.01))
+G12.arc$del <- predict(G12.lo, G12.arc)
+# Graph the data, the smooth recession curve and the master recession curve
+setSweave("plot04", 5, 5)
+with(G12.agg, xyPlot(StartWL, del, ytitle="Recession Rate"))
+with(G12.arc, addXY(StartWL, del, Plot=list(what="lines")))
+# the sense of del is opposite sign in the mrc
+with(G12.mrc, addXY(EndWL[-length(EndWL)], -diff(EndWL),
+  Plot=list(what="lines", color="red")))
+# Required call to close PDF output graphics
+graphics.off()
+@
+\includegraphics{plot04.pdf}
+\paragraph{}
+
+
+\textbf{Figure 4.} The alternate master-recession curve for G12.
+
+For this well, there is very good agreement between the master recession curve and the alternate. There may be some leveling of the recession rate for the lowest values of the starting water level, but without more data the linear fit seems reasonable. Very often the good agreement between mast and alternate recession curves is not the case and indicates that the master recession curve is not valid.
+
+\begin{thebibliography}{9}
+
+\bibitem{DHLM}
+Delin, G.N., Healy, R.W., Lorenz, D.L., and Nimmo, J.R., 2007, Comparison of local- to regional-scale estimates of ground-water recharge in Minnesota, USA, Journal of Hydrology, p. 231-249.
+
+\end{thebibliography}
+
+\end{document}
