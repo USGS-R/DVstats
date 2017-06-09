@@ -15,6 +15,9 @@
 #' @seealso \code{\link{bfi}}, \code{\link{hysep}}, \code{\link{part}}, 
 #' @keywords hplot
 #' @method plot baseflow
+#' @importFrom grDevices dev.off
+#' @importFrom graphics par plot plot.new text
+#' @importFrom utils capture.output menu
 #' @export
 plot.baseflow <- function(x, which = "All", set.up = TRUE, ...) {
   STAID <- attr(x, "STAID")
