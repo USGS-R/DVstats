@@ -37,4 +37,3 @@ climateYear(QW05078470$DATES)
 \code{\link{year}}, \code{\link{waterYear}}
 }
 \keyword{manip}
-

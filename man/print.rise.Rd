@@ -20,8 +20,8 @@ Print an object of class "rise" from a groundwater rise analysis.
 \section{Side Effect}{
  The object \code{x} is printed
 }
+
 \seealso{
 \code{\link{rise}}
 }
 \keyword{print}
-

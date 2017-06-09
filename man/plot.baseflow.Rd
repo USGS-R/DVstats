@@ -27,8 +27,8 @@ Plot an object of class "baseflow" from any baseflow analysis.
 \section{Side Effect}{
  The object \code{x} is plotted
 }
+
 \seealso{
 \code{\link{bfi}}, \code{\link{hysep}}, \code{\link{part}},
 }
 \keyword{hplot}
-

@@ -22,4 +22,3 @@ report contains the text output from \code{print(x)}, the estimated
 values of selected probabilities of exceedance, and a diagnostic plot
 for each fitted distribution.
 }
-

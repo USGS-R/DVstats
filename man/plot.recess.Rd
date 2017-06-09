@@ -41,4 +41,3 @@ then \code{before} is forced to a value greater than 0.
 \code{\link{rise}}
 }
 \keyword{hplot}
-

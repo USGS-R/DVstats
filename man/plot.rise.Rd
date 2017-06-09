@@ -31,4 +31,3 @@ Plot an object of class "rise" from a groundwater rise analysis.
 \code{\link{rise}}
 }
 \keyword{hplot}
-

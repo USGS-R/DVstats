@@ -2,8 +2,8 @@
 % Please edit documentation in R/DVstats-package.R
 \docType{package}
 \name{DVstats-package}
-\alias{DVstats}
 \alias{DVstats-package}
+\alias{DVstats}
 \title{Functions for manipulating daily values}
 \description{
 This package has specialized functions for managing or
@@ -78,16 +78,15 @@ Support and miscellaneous functions.\cr
 \code{\link{seasonYearMD}}\cr
 #'\code{\link{setSeasons}}\cr
 }
-\author{
-Dave Lorenz <lorenz@usgs.gov>
-
-Maintainer: Dave Lorenz <lorenz@usgs.gov>
-}
 \references{
 Need those for the various routines!
 }
 \seealso{
 \code{\link[smwrData:smwrData-package]{smwrData}}
 }
-\keyword{package}
+\author{
+Dave Lorenz <lorenz@usgs.gov>
 
+Maintainer: Dave Lorenz <lorenz@usgs.gov>
+}
+\keyword{package}

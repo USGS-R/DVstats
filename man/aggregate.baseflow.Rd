@@ -44,4 +44,3 @@ aggregate(G12.hysep)
 \code{\link{setSeasons}}
 }
 \keyword{baseflow}
-

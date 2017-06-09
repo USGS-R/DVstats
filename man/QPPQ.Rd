@@ -24,4 +24,3 @@ reference streamgage, and the FDCs for the reference and ungaged sites.
 Q-normal-log interpolation is used. This function can be applied
 anywhere the method is valid.
 }
-

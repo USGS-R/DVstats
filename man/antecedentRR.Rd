@@ -26,4 +26,3 @@ occuring before the first recession of at least 4 days, the recession rate is 0,
 replicates the \code{rise} function.
 }
 \keyword{recession}
-

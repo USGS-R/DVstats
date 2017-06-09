@@ -48,4 +48,3 @@ with(Q05078470, baseDur(FLOW, DATES, base=3, test=">=",
 STAID="05078470"))
 }
 }
-

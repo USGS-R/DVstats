@@ -22,4 +22,3 @@ Prediction Models
 The 13 regional prediction models for the points on a FDC.
 }
 \keyword{datasets}
-

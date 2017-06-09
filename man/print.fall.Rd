@@ -24,4 +24,3 @@ Print an object of class "fall" from a groundwater recession analysis.
 \code{\link{fall}}
 }
 \keyword{print}
-

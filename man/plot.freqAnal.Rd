@@ -36,8 +36,8 @@ corresponding probability scale (uniform for "emp"). If \code{which} is
 \section{Side Effect}{
  The object \code{x} is plotted
 }
+
 \seealso{
 \code{\link{freqAnal}}
 }
 \keyword{hplot}
-

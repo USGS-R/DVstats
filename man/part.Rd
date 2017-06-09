@@ -60,4 +60,3 @@ from streamflow records---Update: U.S. geological Survey Water-Resources Investi
 Report 98-4148. 43 p.
 }
 \keyword{baseflow}
-

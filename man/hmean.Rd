@@ -22,4 +22,3 @@ Compute the harmonic mean accoring to the EPA DFLOW manual.
 Rossman, L.A., No Date, DFLOW user's manual:
 U.S. Environmental Protection Agency, Cincinnati, Ohio, 26 p.
 }
-

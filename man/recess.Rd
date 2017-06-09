@@ -58,4 +58,3 @@ with(ChoptankFlow, recess(Flow, datetime, STAID="0191000"))
 }
 }
 \keyword{recession}
-

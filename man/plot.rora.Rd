@@ -33,4 +33,3 @@ displacement analysis.
 \code{\link{rora}}
 }
 \keyword{hplot}
-

@@ -24,4 +24,3 @@ The object \code{x} is returned with updated recessions
 This function processes the output of function \code{recess} and requires the user to 
 accept or reject the recession.
 }
-

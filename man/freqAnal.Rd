@@ -70,4 +70,3 @@ with(ConecuhFlows, freqAnal(Flow, Year, desc="Annual Flows",
  STAID="02371500"))
 }
 }
-

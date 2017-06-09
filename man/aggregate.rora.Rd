@@ -34,4 +34,3 @@ created by \code{setSeasons}. If a character , thne must be "months," "years,"
 \code{\link{rora}}, \code{\link{setSeasons}}
 }
 \keyword{recharge}
-

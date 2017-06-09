@@ -56,4 +56,3 @@ demo(package="DVstats")
 options(.pager)
 }
 }
-

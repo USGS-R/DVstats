@@ -54,4 +54,3 @@ U.S. geological Survey Water-Resources Investigations
 Report 96-4040. 46 p.
 }
 \keyword{baseflow}
-
