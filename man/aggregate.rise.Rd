@@ -41,4 +41,3 @@ aggregate(G12.rise)
 \code{\link{rise}}, \code{\link{setSeasons}}
 }
 \keyword{recharge}
-

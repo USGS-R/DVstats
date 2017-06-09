@@ -3,6 +3,7 @@
 \name{seasonYear}
 \alias{seasonYear}
 \alias{seasonYearMD}
+\alias{seasonYearMD}
 \title{Season of Year}
 \usage{
 seasonYear(x, start.month = "June", end.month = "September",
@@ -68,4 +69,3 @@ seasonYearMD(QW05078470$DATES)
 \code{\link{month.name}}, \code{\link{month.abb}}
 }
 \keyword{manip}
-

@@ -22,8 +22,8 @@ Print an object of class "baseflow" from any baseflow analysis.
 \section{Side Effect}{
  The object \code{x} is printed
 }
+
 \seealso{
 \code{\link{part}}, \code{\link{hysep}}, \code{\link{bfi}}
 }
 \keyword{print}
-

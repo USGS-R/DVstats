@@ -41,4 +41,3 @@ Summer=c("Jun", "Sep"), Fall=c("Oct", "Nov"))
 \code{\link{seasonYear}}, \code{\link{month.abb}}
 }
 \keyword{manip}
-

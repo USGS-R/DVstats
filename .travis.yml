@@ -1,38 +1,46 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+# Sample .travis.yml for R projects.
+#
+# See README.md for instructions, or for more configuration options,
+# see the wiki:
+#   https://github.com/craigcitro/r-travis/wiki
 
-language: c
+language: r
+cache: packages
+dist: trusty
 
-os:
-  - osx
-  - linux
+matrix:
+  include:
+    - os: linux
+      r: release
+      env: R_CODECOV=true
+
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
 
 env:
    global:
-     - CRAN: http://cran.rstudio.com
      - R_BUILD_ARGS="--no-build-vignettes --no-manual"
      - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
-     - BOOTSTRAP_LATEX=""
-     - NOT_CRAN="true" 
+     - NOT_CRAN="true"
+     - _R_CHECK_FORCE_SUGGESTS_=false
+     
+warnings_are_errors: true
 
-script: "./travis-tool.sh run_tests"
+r_github_packages:
+  - jimhester/covr
+  - USGS-R/smwrData
+  - USGS-R/smwrBase
+  - USGS-R/smwrGraphs
+  - USGS-R/smwrStats
+  - USGS-R/smwrQW
 
-before_script:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - "./travis-tool.sh bootstrap"
-  - "./travis-tool.sh aptget_install r-cran-rodbc"
-  - "./travis-tool.sh install_deps - ./travis-tool.sh install_r methods stats digest memoise testthat KernSmooth akima lubridate dataRetrieval car leaps boot coin XML evd stats4 robust randtests
-  survival XML zCompositions NADA psych"
-  - "./travis-tool.sh install_github USGS-R/smwrData"
-  - "./travis-tool.sh install_github USGS-R/smwrBase"
-  - "./travis-tool.sh install_github USGS-R/smwrGraphs"
-  - "./travis-tool.sh install_github USGS-R/smwrStats"
-  - "./travis-tool.sh install_github USGS-R/smwrQW"
+after_success:
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::coveralls()'; fi
   
-after_script:
-  - "./travis-tool.sh dump_logs"
-
 notifications:
   email:
     on_success: change
     on_failure: change
+

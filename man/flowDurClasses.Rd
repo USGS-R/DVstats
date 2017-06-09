@@ -23,4 +23,3 @@ Compute tables of class-limit flow values, class
 \references{
 USGS SWSTATS?
 }
-

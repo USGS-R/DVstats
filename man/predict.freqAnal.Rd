@@ -22,4 +22,3 @@ The object \code{x} is returned invisibly.
 \description{
 Compute values for selected probability values.
 }
-

@@ -16,4 +16,3 @@ a vector of 13 consitently decreasing estimates.
 \description{
 Construct a consistent flow-duration curve from the 13 estiamtes from a regional regression.
 }
-

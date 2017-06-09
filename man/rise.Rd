@@ -49,4 +49,3 @@ Rutledge, A.T., 2002, User guide for the PULSE program:
 U.S. Geological Survey Open-File Report 02--455, 34 p.
 }
 \keyword{recession}
-

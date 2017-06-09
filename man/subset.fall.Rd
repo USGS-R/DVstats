@@ -44,4 +44,3 @@ with(GlacialRidge, fall(G12, datetime, MPelev=1126.42))[1]
 \code{\link{fall}}
 }
 \keyword{manip}
-

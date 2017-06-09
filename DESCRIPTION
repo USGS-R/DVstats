@@ -1,5 +1,5 @@
 Package: DVstats
-Version: 0.3.3
+Version: 0.3.3.9000
 Date: 2016-01-25
 Title: Functions to manipulate daily-values data
 Author: Dave Lorenz <lorenz@usgs.gov>
@@ -71,4 +71,4 @@ Collate:
     'setSeasons.R'
     'subset.fall.R'
     'wtf.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

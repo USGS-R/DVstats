@@ -29,4 +29,3 @@ ungaged sites in Minnesota.
 The selected points on the FDC can also be obtained using StreamStats for
 Minnesota.
 }
-

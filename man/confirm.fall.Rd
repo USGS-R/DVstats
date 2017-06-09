@@ -25,4 +25,3 @@ This function processes the output of function \code{fall} and requires the user
 accept or reject the recession.
 }
 \keyword{manip}
-

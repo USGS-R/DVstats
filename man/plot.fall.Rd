@@ -48,4 +48,3 @@ first color and the largest rates correspond to the last color.
 \code{\link{fall}}
 }
 \keyword{hplot}
-

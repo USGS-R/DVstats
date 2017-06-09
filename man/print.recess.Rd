@@ -22,8 +22,8 @@ Print surface-water recession summary information
 \section{Side Effect}{
  The object \code{x} is printed
 }
+
 \seealso{
 \code{\link{recess}}
 }
 \keyword{print}
-

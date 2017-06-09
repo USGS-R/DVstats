@@ -18,4 +18,3 @@ The object returned depends on the specific method.
 Review and accept the results of an analysis
 }
 \keyword{manip}
-

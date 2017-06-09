@@ -21,4 +21,3 @@ The object \code{x} is returned invisibly.
 \description{
 Prints the results of a frequency analysis.
 }
-

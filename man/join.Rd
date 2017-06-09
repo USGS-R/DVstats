@@ -20,4 +20,3 @@ recession in \code{x} and \code{value}.
 \description{
 Append two recession analyses.
 }
-
