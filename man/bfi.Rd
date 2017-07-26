@@ -44,7 +44,7 @@ Gustard and others (1992) describe using continuous 5-day increments rather than
 on the water year.
 
 The \code{bfi} program developed by Wahl and Wahl available at 
-\url{http://www.usbr.gov/pmts/hydraulics_lab/twahl/bfi/} uses the continuous record
+\url{https://www.usbr.gov/pmts/hydraulics_lab/twahl/bfi/} uses the continuous record
 for constructing the \code{N-day} periods. The argument \code{by} can select either
 water year, continuous or calendar year records.
 }
