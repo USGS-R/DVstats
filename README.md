@@ -14,19 +14,20 @@ If you are interested in becoming the official maintainer of `DVstats`, please e
 
 In the meantime, we rely on community involvement to report and fix bugs.
 
-### Reporting bugs
-
-Please consider reporting bugs and asking questions on the Issues page:
-[https://github.com/USGS-R/DVstats/issues](https://github.com/USGS-R/DVstats/issues)
-
-Follow `@USGS-R` on Twitter for updates on USGS R packages:
-[https://twitter.com/USGS_R](https://twitter.com/USGS_R)
-
 ### Current build tests:
 
 |Linux|Test Coverage|
 |----------|------------|
 | [![travis](https://travis-ci.org/USGS-R/DVstats.svg?branch=master)](https://travis-ci.org/USGS-R/DVstats)|[![Coverage Status](https://coveralls.io/repos/github/USGS-R/DVstats/badge.svg?branch=master)](https://coveralls.io/github/USGS-R/DVstats?branch=master)|
+
+### Reporting bugs
+
+Please consider reporting bugs and asking questions on the Issues page:
+[https://github.com/USGS-R/DVstats/issues](https://github.com/USGS-R/DVstats/issues)
+
+Follow `@USGS_R` on Twitter for updates on USGS R packages:
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/USGS_R.svg?style=social&label=Follow%20USGS_R)](https://twitter.com/USGS_R)
 
 ## Code of Conduct
 
