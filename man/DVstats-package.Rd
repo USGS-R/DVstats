@@ -12,8 +12,6 @@ manipulating hydrologic daily-value data.
 \details{
 \tabular{ll}{ Package: \tab DVstats\cr 
 Type: \tab Package\cr 
-Version: \tab 0.3.3\cr 
-Date: \tab 2016-01-25\cr 
 License: \tab CC0\cr 
 Depends: \tab methods, lubridate, smwrBase, smwrGraphs, 
 smwrStats, smwrQW, evd, stats, stats4, robust\cr } 
@@ -85,8 +83,6 @@ Need those for the various routines!
 \code{\link[smwrData:smwrData-package]{smwrData}}
 }
 \author{
-Dave Lorenz <lorenz@usgs.gov>
-
-Maintainer: Dave Lorenz <lorenz@usgs.gov>
+Dave Lorenz
 }
 \keyword{package}

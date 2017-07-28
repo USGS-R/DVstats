@@ -1,9 +1,9 @@
 Package: DVstats
-Version: 0.3.3.9000
-Date: 2016-01-25
+Version: 0.3.4
+Date: 2017-07-26
 Title: Functions to manipulate daily-values data
-Author: Dave Lorenz <lorenz@usgs.gov>
-Maintainer: Dave Lorenz <lorenz@usgs.gov>
+Authors@R: c( person("Dave", "Lorenz", role = "cre", email = "gs-w_r_admin@usgs.gov"),
+              person("Laura", "De Cicco", role = "ctb"))
 Imports:
     robust,
     methods,
@@ -24,6 +24,7 @@ Description: This package has data several functions that are useful for
 License: CC0
 LazyLoad: yes
 LazyData: yes
+BugReports: https://github.com/USGS-R/DVstats/issues
 Collate:
     'DVstats-package.R'
     'Lognormal3.R'

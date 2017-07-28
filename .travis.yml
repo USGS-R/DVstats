@@ -12,6 +12,8 @@ matrix:
   include:
     - os: linux
       r: release
+    - os: linux
+      r: devel
       env: R_CODECOV=true
 
 addons:
@@ -26,15 +28,17 @@ env:
      - NOT_CRAN="true"
      - _R_CHECK_FORCE_SUGGESTS_=false
      
-warnings_are_errors: true
+repos:
+  CRAN: https://cran.rstudio.com
+  GRAN: https://owi.usgs.gov/R 
+
+script: 
+  - |
+    R CMD build .
+    travis_wait 20 R CMD check DVstats*tar.gz
 
 r_github_packages:
   - jimhester/covr
-  - USGS-R/smwrData
-  - USGS-R/smwrBase
-  - USGS-R/smwrGraphs
-  - USGS-R/smwrStats
-  - USGS-R/smwrQW
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::coveralls()'; fi
